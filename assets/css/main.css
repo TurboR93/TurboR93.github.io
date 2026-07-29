@@ -8816,6 +8816,43 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
   }
 }
 
+.cv-head {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .cv-head {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 3rem;
+  }
+}
+.cv-head__photo {
+  justify-self: start;
+  width: min(100%, 11rem);
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+@media (min-width: 768px) {
+  .cv-head__photo {
+    justify-self: end;
+    width: 13rem;
+  }
+}
+@media (min-width: 1024px) {
+  .cv-head__photo {
+    width: 15rem;
+  }
+}
+.cv-head__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .cv__aside {
   display: grid;
   gap: 2rem;

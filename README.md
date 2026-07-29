@@ -105,12 +105,10 @@ su **GitHub Actions**.
 
 ## Cosa manca
 
-- [ ] Fotografia ritratto in `assets/img/me/` (ora c'è un segnaposto tipografico)
-- [ ] Esperienze lavorative precedenti in `cv.html`
-- [ ] Formazione: percorso, ente, anni
-- [ ] Livello di inglese e altre lingue
-- [ ] Certificazioni, oppure rimozione del riquadro
-- [ ] Attivazione di FormSubmit (procedura qui sopra)
+- [x] Fotografia ritratto — in `assets/img/me/`, due misure servite con `srcset`
+- [x] Esperienze lavorative e formazione complete in `cv.html`
+- [ ] Livello di inglese: indicato come "Professionale", da confermare
+- [ ] Attivazione di FormSubmit (procedura qui sopra): finché manca, il modulo non recapita
 - [ ] Schermate del progetto mooVe (ora ha una copertina tipografica)
 
 I punti sono segnalati anche nei file, con commenti che iniziano per `⚠️`.

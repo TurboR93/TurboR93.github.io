@@ -164,13 +164,15 @@
           <!-- Ritratto. Il segnaposto resta finché non c'è una fotografia:
                basta sostituire questo blocco con un <img>. -->
           <div class="hero__portrait tilt">
-              <div class="tilt__zones" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-              <div class="tilt__inner">
-            <div class="hero__portrait-placeholder">
-              <span class="initials">RB</span>
-              <span class="caption">Riccardo Brunello</span>
-              </div>
-              </div>
+            <div class="tilt__zones" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="tilt__inner">
+              <img src="assets/img/me/riccardo-brunello-800.jpg"
+                   srcset="assets/img/me/riccardo-brunello-400.jpg 400w,
+                           assets/img/me/riccardo-brunello-800.jpg 800w"
+                   sizes="(min-width: 1024px) 20rem, (min-width: 640px) 18rem, 15rem"
+                   alt="Riccardo Brunello ritratto in officina, giacca color mattone"
+                   width="800" height="800" fetchpriority="high">
+            </div>
           </div>
         </div>
       </div>
