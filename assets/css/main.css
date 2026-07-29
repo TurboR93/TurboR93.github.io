@@ -8262,11 +8262,15 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
 
 .tilt {
   position: relative;
-  perspective: 1000px;
   --gx: 50%;
   --gy: 50%;
   --rx: 0deg;
   --ry: 0deg;
+  --lift: 0px;
+  transform: perspective(1000px) translateY(var(--lift)) rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 .tilt__zones {
   position: absolute;
@@ -8282,10 +8286,7 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
 .tilt__inner {
   position: relative;
   height: 100%;
-  transform: rotateX(var(--rx)) rotateY(var(--ry));
-  transform-style: preserve-3d;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
+  transition: box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.45s ease;
 }
 .tilt__inner::after {
   content: "";
@@ -8304,29 +8305,44 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
   z-index: 5;
 }
 
+.project-featured.tilt {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.45s ease;
+}
+.project-featured.tilt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease, background 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  background: radial-gradient(circle at var(--gx) var(--gy), rgba(253, 240, 122, 0.2), rgba(253, 240, 122, 0.05) 30%, transparent 55%);
+}
+
 @supports selector(:has(*)) {
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .tilt:has(.tilt__zones span:nth-child(1):hover) {
-      --rx: 5.5deg;
-      --ry: -5.5deg;
+      --rx: 4.5deg;
+      --ry: -4.5deg;
       --gx: 15%;
       --gy: 15%;
     }
     .tilt:has(.tilt__zones span:nth-child(2):hover) {
-      --rx: 5.5deg;
+      --rx: 4.5deg;
       --ry: 0deg;
       --gx: 50%;
       --gy: 15%;
     }
     .tilt:has(.tilt__zones span:nth-child(3):hover) {
-      --rx: 5.5deg;
-      --ry: 5.5deg;
+      --rx: 4.5deg;
+      --ry: 4.5deg;
       --gx: 85%;
       --gy: 15%;
     }
     .tilt:has(.tilt__zones span:nth-child(4):hover) {
       --rx: 0deg;
-      --ry: -5.5deg;
+      --ry: -4.5deg;
       --gx: 15%;
       --gy: 50%;
     }
@@ -8338,33 +8354,43 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
     }
     .tilt:has(.tilt__zones span:nth-child(6):hover) {
       --rx: 0deg;
-      --ry: 5.5deg;
+      --ry: 4.5deg;
       --gx: 85%;
       --gy: 50%;
     }
     .tilt:has(.tilt__zones span:nth-child(7):hover) {
-      --rx: -5.5deg;
-      --ry: -5.5deg;
+      --rx: -4.5deg;
+      --ry: -4.5deg;
       --gx: 15%;
       --gy: 85%;
     }
     .tilt:has(.tilt__zones span:nth-child(8):hover) {
-      --rx: -5.5deg;
+      --rx: -4.5deg;
       --ry: 0deg;
       --gx: 50%;
       --gy: 85%;
     }
     .tilt:has(.tilt__zones span:nth-child(9):hover) {
-      --rx: -5.5deg;
-      --ry: 5.5deg;
+      --rx: -4.5deg;
+      --ry: 4.5deg;
       --gx: 85%;
       --gy: 85%;
+    }
+    .tilt:has(.tilt__zones span:hover) {
+      --lift: -8px;
     }
     .tilt:has(.tilt__zones span:hover) .tilt__inner {
       box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.55);
       border-color: rgba(253, 240, 122, 0.4);
     }
     .tilt:has(.tilt__zones span:hover) .tilt__inner::after {
+      opacity: 1;
+    }
+    .project-featured.tilt:has(.tilt__zones span:hover) {
+      border-color: rgba(253, 240, 122, 0.4);
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.55);
+    }
+    .project-featured.tilt:has(.tilt__zones span:hover)::after {
       opacity: 1;
     }
     .tilt:has(.tilt__zones span:hover) .card-dark__body,
@@ -8374,7 +8400,6 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
     .card-dark__body,
     .project-featured__body {
       transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-      transform-style: preserve-3d;
     }
   }
 }
