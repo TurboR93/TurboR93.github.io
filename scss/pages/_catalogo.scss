@@ -409,3 +409,94 @@
     color: $c-yellow;
   }
 }
+
+// -------------------------------------------------------------------
+// Rimando a Vaultinn
+// Buona parte del lavoro degli ultimi anni e' uscito sotto il marchio
+// dello studio, non sotto il mio nome: questo blocco lo dichiara e manda
+// a vedere quei lavori alla fonte.
+// -------------------------------------------------------------------
+.studio-band {
+  position: relative;
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 3.5rem;
+  padding: 2.5rem;
+  overflow: hidden;
+  background: $c-night-card;
+  border: 1px solid $w-10;
+  border-radius: $r-3xl;
+
+  @include up(md) {
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+    gap: 3.5rem;
+    padding: 3rem;
+  }
+
+  // Alone caldo che stacca la fascia dal fondo della pagina
+  &::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 30rem;
+    height: 30rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(208, 63, 41, 0.22), transparent 70%);
+    pointer-events: none;
+  }
+
+  &__logo {
+    position: relative;
+    z-index: 1;
+    justify-self: start;
+
+    img {
+      width: min(100%, 20rem);
+      height: auto;
+
+      @include up(md) { width: 17rem; }
+      @include up(lg) { width: 21rem; }
+    }
+  }
+
+  &__body {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__eyebrow {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    font-size: $fs-xs;
+    font-weight: $fw-bold;
+    text-transform: uppercase;
+    letter-spacing: $ls-wider;
+    color: $c-yellow;
+  }
+
+  &__title {
+    font-size: $fs-2xl;
+    font-weight: $fw-black;
+    text-transform: uppercase;
+    line-height: $lh-tight;
+    color: $c-white;
+    margin-bottom: 0.75rem;
+
+    @include up(md) { font-size: $fs-3xl; }
+  }
+
+  &__desc {
+    color: $w-70;
+    line-height: $lh-relaxed;
+    margin-bottom: 1.5rem;
+    max-width: 42rem;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+}

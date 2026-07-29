@@ -112,16 +112,15 @@
               usato dal sito hAutomatico. Non serve JavaScript: è un normale
               invio POST, quindi funziona anche a script disattivati.
 
-              ⚠️  DA CONFIGURARE PRIMA DELLA PUBBLICAZIONE
-              Sostituisci CHIAVE_FORMSUBMIT qui sotto con la stringa personale
-              che FormSubmit fornisce dopo la prima attivazione. Usare la chiave
-              invece dell'indirizzo email serve a non lasciare la casella di posta
-              scritta in chiaro nel sorgente della pagina, dove i raccoglitori
-              automatici la troverebbero in pochi minuti.
-              Procedura completa nel README, sezione "Attivazione del modulo".
+              Al primo invio FormSubmit manda una mail di conferma da premere
+              una sola volta; da quel momento i messaggi arrivano in casella.
+              Nella stessa mail c'è una stringa personale: sostituendola
+              all'indirizzo qui sotto, la casella sparisce dal sorgente della
+              pagina e i raccoglitori automatici non la trovano più.
+              Procedura nel README, sezione "Attivazione del modulo".
             -->
             <form class="form-brand"
-                  action="https://formsubmit.co/CHIAVE_FORMSUBMIT"
+                  action="https://formsubmit.co/brun.riccardo@gmail.com"
                   method="POST">
 
               <!-- Impostazioni lette da FormSubmit -->
@@ -225,6 +224,16 @@
             </div>
 
             <div class="contact-card">
+              <h3>Preferisci la posta?</h3>
+              <p style="color: rgba(255,255,255,.7); font-size: .9375rem; line-height: 1.625">
+                Scrivi direttamente a
+                <a href="mailto:brun.riccardo@gmail.com?subject=Contatto%20dal%20sito"
+                   style="color: #FDF07A; text-decoration: underline; font-weight: 700">brun.riccardo@gmail.com</a>.
+                Il modulo qui accanto recapita allo stesso indirizzo.
+              </p>
+            </div>
+
+            <div class="contact-card">
               <h3>Altrove</h3>
               <div class="site-footer__social" style="margin-top: 0">
                 <a class="social-btn social-btn--on-dark" href="https://github.com/TurboR93" target="_blank" rel="noopener noreferrer">
@@ -261,7 +270,7 @@
         <div class="site-footer__block">
           <h3>Riccardo Brunello</h3>
           <p>
-            Technical Director fra 3D, effetti visivi e automazione.
+            Technical Director. Effetti visivi, automazione e sviluppo.
             Head of 3D e specialista AI in Vaultinn, CTO di hAutomatico.
           </p>
           <div class="site-footer__social">

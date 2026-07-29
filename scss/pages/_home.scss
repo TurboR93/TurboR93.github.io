@@ -88,6 +88,18 @@
     color: $w-80;
 
     @include up(md) { font-size: $fs-xl; }
+
+    // Secondo capoverso: racconta la provenienza, quindi arretra di un
+    // gradino rispetto alla frase che apre.
+    &--sub {
+      margin-top: 1rem;
+      font-size: $fs-base;
+      color: $w-60;
+
+      @include up(md) { font-size: $fs-lg; }
+
+      strong { color: $w-80; }
+    }
   }
 
   &__actions {

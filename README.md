@@ -72,12 +72,14 @@ Il modulo si appoggia a [FormSubmit](https://formsubmit.co), lo stesso servizio
 usato dal sito hAutomatico. Non richiede registrazione né chiavi API, ma va
 attivato una volta sola.
 
-1. Apri `contatti.html` e sostituisci temporaneamente `CHIAVE_FORMSUBMIT`
-   nell'attributo `action` con l'indirizzo email di destinazione.
-2. Pubblica il sito e invia un messaggio di prova dal modulo.
-3. Arriva una email da FormSubmit con un pulsante di conferma: premilo.
-   Nella stessa email trovi una **stringa personale** (il tuo alias).
-4. Torna in `contatti.html` e metti quella stringa al posto dell'indirizzo:
+L'attributo `action` punta già a `brun.riccardo@gmail.com`, quindi:
+
+1. Invia un messaggio di prova dal modulo pubblicato.
+2. Arriva una email da FormSubmit con un pulsante di conferma: premilo.
+   Da quel momento i messaggi arrivano in casella. Nella stessa email trovi
+   una **stringa personale** (il tuo alias).
+3. Facoltativo ma consigliato: metti quella stringa al posto dell'indirizzo
+   in `contatti.html`, così la casella sparisce dal sorgente della pagina:
 
    ```html
    <form action="https://formsubmit.co/xxxxxxxxxxxxxxxx" method="POST">
@@ -108,7 +110,7 @@ su **GitHub Actions**.
 - [x] Fotografia ritratto — in `assets/img/me/`, due misure servite con `srcset`
 - [x] Esperienze lavorative e formazione complete in `cv.html`
 - [x] Livello di inglese: Professionale, confermato
-- [ ] Attivazione di FormSubmit (procedura qui sopra): finché manca, il modulo non recapita
+- [ ] Conferma FormSubmit al primo invio (procedura qui sopra)
 - [ ] Schermate del progetto mooVe (ora ha una copertina tipografica)
 
 I punti sono segnalati anche nei file, con commenti che iniziano per `⚠️`.

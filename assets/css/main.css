@@ -8691,6 +8691,19 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
     font-size: 1.25rem;
   }
 }
+.hero__lead--sub {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+@media (min-width: 768px) {
+  .hero__lead--sub {
+    font-size: 1.125rem;
+  }
+}
+.hero__lead--sub strong {
+  color: rgba(255, 255, 255, 0.8);
+}
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
@@ -9782,4 +9795,91 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
 .back-link:hover {
   gap: 0.875rem;
   color: #fdf07a;
+}
+
+.studio-band {
+  position: relative;
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 3.5rem;
+  padding: 2.5rem;
+  overflow: hidden;
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+}
+@media (min-width: 768px) {
+  .studio-band {
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+    gap: 3.5rem;
+    padding: 3rem;
+  }
+}
+.studio-band::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 30rem;
+  height: 30rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(208, 63, 41, 0.22), transparent 70%);
+  pointer-events: none;
+}
+.studio-band__logo {
+  position: relative;
+  z-index: 1;
+  justify-self: start;
+}
+.studio-band__logo img {
+  width: min(100%, 20rem);
+  height: auto;
+}
+@media (min-width: 768px) {
+  .studio-band__logo img {
+    width: 17rem;
+  }
+}
+@media (min-width: 1024px) {
+  .studio-band__logo img {
+    width: 21rem;
+  }
+}
+.studio-band__body {
+  position: relative;
+  z-index: 1;
+}
+.studio-band__eyebrow {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fdf07a;
+}
+.studio-band__title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1.25;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+@media (min-width: 768px) {
+  .studio-band__title {
+    font-size: 1.875rem;
+  }
+}
+.studio-band__desc {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.625;
+  margin-bottom: 1.5rem;
+  max-width: 42rem;
+}
+.studio-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
