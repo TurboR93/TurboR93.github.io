@@ -1,0 +1,308 @@
+// ===================================================================
+// INTERAZIONI AL PASSAGGIO DEL MOUSE — SENZA JAVASCRIPT
+//
+// Il problema: il CSS non conosce la posizione del puntatore, quindi un
+// vero parallasse legato al mouse (quello che hAutomatico ottiene con
+// Framer Motion) qui non è riproducibile.
+//
+// La soluzione: campionarla. Sopra l'elemento si stende una griglia di
+// nove zone trasparenti; il selettore :has() riconosce quale zona è sotto
+// il puntatore e applica a quella una diversa inclinazione e una diversa
+// posizione del bagliore. Con una transizione morbida fra uno stato e
+// l'altro, l'occhio legge un movimento continuo che insegue il mouse.
+//
+// Nove stati discreti invece di infiniti: la differenza si nota se la si
+// cerca, ma il senso di reattività è quello.
+// ===================================================================
+
+@import '../abstracts/mixins';
+
+// -------------------------------------------------------------------
+// Contenitore inclinabile
+// -------------------------------------------------------------------
+.tilt {
+  position: relative;
+  perspective: 1000px;
+
+  // Posizione del bagliore, riscritta dalla zona attiva.
+  --gx: 50%;
+  --gy: 50%;
+  // Rotazione, idem.
+  --rx: 0deg;
+  --ry: 0deg;
+
+  &__zones {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    span { display: block; }
+  }
+
+  &__inner {
+    position: relative;
+    height: 100%;
+    transform: rotateX(var(--rx)) rotateY(var(--ry));
+    transform-style: preserve-3d;
+    transition: transform 0.45s $ease-brand, box-shadow 0.45s $ease-brand;
+    will-change: transform;
+
+    // Il bagliore che segue il puntatore.
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      border-radius: inherit;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease, background 0.45s $ease-brand;
+      background: radial-gradient(
+        circle at var(--gx) var(--gy),
+        rgba(253, 240, 122, 0.22),
+        rgba(253, 240, 122, 0.06) 32%,
+        transparent 58%
+      );
+    }
+  }
+
+  // Tutto ciò che deve restare cliccabile va sopra le zone.
+  a,
+  button {
+    position: relative;
+    z-index: 5;
+  }
+}
+
+// -------------------------------------------------------------------
+// Le nove zone
+// Ogni riga: rotazione sull'asse X (alto positivo, basso negativo) e
+// sull'asse Y (sinistra negativo, destra positivo), più il punto in cui
+// si accende il bagliore.
+// -------------------------------------------------------------------
+@supports selector(:has(*)) {
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+
+    $zones: (
+      1: (5.5deg, -5.5deg, 15%, 15%),
+      2: (5.5deg, 0deg, 50%, 15%),
+      3: (5.5deg, 5.5deg, 85%, 15%),
+      4: (0deg, -5.5deg, 15%, 50%),
+      5: (0deg, 0deg, 50%, 50%),
+      6: (0deg, 5.5deg, 85%, 50%),
+      7: (-5.5deg, -5.5deg, 15%, 85%),
+      8: (-5.5deg, 0deg, 50%, 85%),
+      9: (-5.5deg, 5.5deg, 85%, 85%),
+    );
+
+    @each $i, $v in $zones {
+      .tilt:has(.tilt__zones span:nth-child(#{$i}):hover) {
+        --rx: #{nth($v, 1)};
+        --ry: #{nth($v, 2)};
+        --gx: #{nth($v, 3)};
+        --gy: #{nth($v, 4)};
+      }
+    }
+
+    // Mentre il puntatore è sopra: la card si stacca dal fondo, il bordo
+    // si accende e il bagliore compare.
+    .tilt:has(.tilt__zones span:hover) .tilt__inner {
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.55);
+      border-color: rgba(253, 240, 122, 0.4);
+
+      &::after { opacity: 1; }
+    }
+
+    // Il contenuto si solleva di un soffio rispetto alla card: è quel
+    // distacco a rendere credibile la prospettiva.
+    .tilt:has(.tilt__zones span:hover) .card-dark__body,
+    .tilt:has(.tilt__zones span:hover) .project-featured__body {
+      transform: translateZ(28px);
+    }
+
+    .card-dark__body,
+    .project-featured__body {
+      transition: transform 0.45s $ease-brand;
+      transform-style: preserve-3d;
+    }
+  }
+}
+
+// -------------------------------------------------------------------
+// Attenuazione dei vicini
+// Quando il puntatore sceglie una card, le altre arretrano. Serve a
+// dirigere lo sguardo, non a decorare.
+// -------------------------------------------------------------------
+@supports selector(:has(*)) {
+  @media (hover: hover) and (pointer: fine) {
+    .dim-siblings:has(> *:hover) > *:not(:hover) {
+      opacity: 0.45;
+      filter: saturate(0.6);
+    }
+
+    .dim-siblings > * {
+      transition: opacity 0.4s ease, filter 0.4s ease;
+    }
+  }
+}
+
+// -------------------------------------------------------------------
+// Bottoni: riempimento che sale dal basso
+// -------------------------------------------------------------------
+.btn-brand {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform: scaleY(0);
+    transform-origin: bottom center;
+    transition: transform 0.35s $ease-brand;
+  }
+
+  &:hover::before { transform: scaleY(1); }
+
+  &--outline-light::before { background: $c-white; }
+  &--outline-light:hover    { color: $c-night; border-color: $c-white; }
+
+  &--outline-dark::before  { background: $c-black; }
+  &--outline-dark:hover    { color: $c-white; }
+
+  &--yellow::before { background: $c-yellow-hover; }
+  &--red::before    { background: $c-red-hover; }
+  &--black::before  { background: $c-red; }
+}
+
+// -------------------------------------------------------------------
+// Etichette: si accendono una per una
+// -------------------------------------------------------------------
+.pill {
+  transition: transform 0.25s $ease-spring, border-color 0.25s ease,
+              color 0.25s ease, background-color 0.25s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(253, 240, 122, 0.7);
+    color: $c-yellow;
+  }
+
+  &--on-yellow:hover {
+    border-color: $c-red;
+    color: $c-red;
+  }
+}
+
+// -------------------------------------------------------------------
+// Tappe del curriculum: il pallino cresce e la riga si illumina
+// -------------------------------------------------------------------
+@supports selector(:has(*)) {
+  .timeline__item {
+    transition: transform 0.35s $ease-brand;
+
+    &::before {
+      transition: transform 0.35s $ease-spring, box-shadow 0.35s ease,
+                  background-color 0.35s ease;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        transform: translateX(6px);
+
+        &::before {
+          transform: scale(1.5);
+          background: $c-red;
+          box-shadow: 0 0 0 6px rgba(208, 63, 41, 0.22);
+        }
+
+        .timeline__role { color: $c-yellow; }
+      }
+    }
+  }
+
+  .timeline__role { transition: color 0.3s ease; }
+}
+
+// -------------------------------------------------------------------
+// Barre delle competenze: al passaggio mostrano il valore in evidenza
+// -------------------------------------------------------------------
+.skill-bar {
+  transition: transform 0.3s $ease-brand;
+
+  &__track { transition: box-shadow 0.3s ease; }
+  &__level { transition: color 0.3s ease, transform 0.3s ease; }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateX(4px);
+
+      .skill-bar__track { box-shadow: 0 0 0 3px rgba(253, 240, 122, 0.15); }
+      .skill-bar__level { color: $c-yellow; }
+    }
+  }
+}
+
+// -------------------------------------------------------------------
+// Collegamenti social: l'icona ruota appena
+// -------------------------------------------------------------------
+.social-btn {
+  svg { transition: transform 0.35s $ease-spring; }
+  &:hover svg { transform: rotate(-8deg) scale(1.12); }
+}
+
+// -------------------------------------------------------------------
+// Miniature dei progetti: quella scelta emerge, le altre si ritirano
+// -------------------------------------------------------------------
+@supports selector(:has(*)) {
+  @media (hover: hover) and (pointer: fine) {
+    .shots:has(img:hover) img:not(:hover) {
+      opacity: 0.4;
+      transform: scale(0.97);
+    }
+  }
+}
+
+// -------------------------------------------------------------------
+// Voci di navigazione: la voce scelta spinge via le altre
+// -------------------------------------------------------------------
+@supports selector(:has(*)) {
+  @media (hover: hover) and (pointer: fine) {
+    .nav__list:has(.nav__link:hover) .nav__link:not(:hover) {
+      opacity: 0.55;
+    }
+    .nav__link { transition: opacity 0.3s ease, transform 0.3s ease; }
+  }
+}
+
+// -------------------------------------------------------------------
+// Ritratto dell'intestazione: cornice che si accende
+// -------------------------------------------------------------------
+.hero__portrait {
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: rgba(253, 240, 122, 0.5);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  .initials { transition: transform 0.5s $ease-spring, color 0.4s ease; }
+  &:hover .initials { transform: scale(1.06); }
+}
+
+// -------------------------------------------------------------------
+// Chi ha chiesto meno movimento non riceve inclinazioni né spostamenti.
+// -------------------------------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+  .tilt__inner { transform: none !important; }
+  .tilt__inner::after { display: none; }
+  .timeline__item:hover,
+  .skill-bar:hover { transform: none; }
+}

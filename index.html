@@ -163,11 +163,14 @@
 
           <!-- Ritratto. Il segnaposto resta finché non c'è una fotografia:
                basta sostituire questo blocco con un <img>. -->
-          <div class="hero__portrait">
+          <div class="hero__portrait tilt">
+              <div class="tilt__zones" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="tilt__inner">
             <div class="hero__portrait-placeholder">
               <span class="initials">RB</span>
               <span class="caption">Riccardo Brunello</span>
-            </div>
+              </div>
+              </div>
           </div>
         </div>
       </div>
@@ -211,9 +214,10 @@
           </p>
         </div>
 
-        <div class="grid-3 reveal-stagger" style="margin-top: 3rem">
-          <article class="card-lift">
-            <div class="card-dark">
+        <div class="grid-3 reveal-stagger dim-siblings" style="margin-top: 3rem">
+          <article class="card-lift tilt">
+            <div class="tilt__zones" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="card-dark tilt__inner">
               <div class="card-dark__body">
                 <h3 class="h-card">3D, VFX e pipeline</h3>
                 <p>
@@ -230,8 +234,9 @@
             </div>
           </article>
 
-          <article class="card-lift">
-            <div class="card-dark">
+          <article class="card-lift tilt">
+            <div class="tilt__zones" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="card-dark tilt__inner">
               <div class="card-dark__body">
                 <h3 class="h-card">Automazione e AI</h3>
                 <p>
@@ -248,8 +253,9 @@
             </div>
           </article>
 
-          <article class="card-lift">
-            <div class="card-dark">
+          <article class="card-lift tilt">
+            <div class="tilt__zones" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="card-dark tilt__inner">
               <div class="card-dark__body">
                 <h3 class="h-card">Piattaforme web</h3>
                 <p>
@@ -312,7 +318,7 @@
           </div>
 
           <div class="reveal-right">
-            <div class="grid-2" style="gap: 1.5rem">
+            <div class="grid-2 dim-siblings" style="gap: 1.5rem">
               <div class="card-value">
                 <h3>Processo prima di tutto</h3>
                 <p>Capire come si lavora oggi viene prima di scegliere qualsiasi strumento.</p>

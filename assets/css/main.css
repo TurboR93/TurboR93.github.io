@@ -8260,6 +8260,286 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
   color: rgba(255, 255, 255, 0.9);
 }
 
+.tilt {
+  position: relative;
+  perspective: 1000px;
+  --gx: 50%;
+  --gy: 50%;
+  --rx: 0deg;
+  --ry: 0deg;
+}
+.tilt__zones {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+.tilt__zones span {
+  display: block;
+}
+.tilt__inner {
+  position: relative;
+  height: 100%;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.tilt__inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease, background 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  background: radial-gradient(circle at var(--gx) var(--gy), rgba(253, 240, 122, 0.22), rgba(253, 240, 122, 0.06) 32%, transparent 58%);
+}
+.tilt a,
+.tilt button {
+  position: relative;
+  z-index: 5;
+}
+
+@supports selector(:has(*)) {
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .tilt:has(.tilt__zones span:nth-child(1):hover) {
+      --rx: 5.5deg;
+      --ry: -5.5deg;
+      --gx: 15%;
+      --gy: 15%;
+    }
+    .tilt:has(.tilt__zones span:nth-child(2):hover) {
+      --rx: 5.5deg;
+      --ry: 0deg;
+      --gx: 50%;
+      --gy: 15%;
+    }
+    .tilt:has(.tilt__zones span:nth-child(3):hover) {
+      --rx: 5.5deg;
+      --ry: 5.5deg;
+      --gx: 85%;
+      --gy: 15%;
+    }
+    .tilt:has(.tilt__zones span:nth-child(4):hover) {
+      --rx: 0deg;
+      --ry: -5.5deg;
+      --gx: 15%;
+      --gy: 50%;
+    }
+    .tilt:has(.tilt__zones span:nth-child(5):hover) {
+      --rx: 0deg;
+      --ry: 0deg;
+      --gx: 50%;
+      --gy: 50%;
+    }
+    .tilt:has(.tilt__zones span:nth-child(6):hover) {
+      --rx: 0deg;
+      --ry: 5.5deg;
+      --gx: 85%;
+      --gy: 50%;
+    }
+    .tilt:has(.tilt__zones span:nth-child(7):hover) {
+      --rx: -5.5deg;
+      --ry: -5.5deg;
+      --gx: 15%;
+      --gy: 85%;
+    }
+    .tilt:has(.tilt__zones span:nth-child(8):hover) {
+      --rx: -5.5deg;
+      --ry: 0deg;
+      --gx: 50%;
+      --gy: 85%;
+    }
+    .tilt:has(.tilt__zones span:nth-child(9):hover) {
+      --rx: -5.5deg;
+      --ry: 5.5deg;
+      --gx: 85%;
+      --gy: 85%;
+    }
+    .tilt:has(.tilt__zones span:hover) .tilt__inner {
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.55);
+      border-color: rgba(253, 240, 122, 0.4);
+    }
+    .tilt:has(.tilt__zones span:hover) .tilt__inner::after {
+      opacity: 1;
+    }
+    .tilt:has(.tilt__zones span:hover) .card-dark__body,
+    .tilt:has(.tilt__zones span:hover) .project-featured__body {
+      transform: translateZ(28px);
+    }
+    .card-dark__body,
+    .project-featured__body {
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      transform-style: preserve-3d;
+    }
+  }
+}
+@supports selector(:has(*)) {
+  @media (hover: hover) and (pointer: fine) {
+    .dim-siblings:has(> *:hover) > *:not(:hover) {
+      opacity: 0.45;
+      filter: saturate(0.6);
+    }
+    .dim-siblings > * {
+      transition: opacity 0.4s ease, filter 0.4s ease;
+    }
+  }
+}
+.btn-brand {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-brand::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-brand:hover::before {
+  transform: scaleY(1);
+}
+.btn-brand--outline-light::before {
+  background: #ffffff;
+}
+.btn-brand--outline-light:hover {
+  color: #1a1a1a;
+  border-color: #ffffff;
+}
+.btn-brand--outline-dark::before {
+  background: #000000;
+}
+.btn-brand--outline-dark:hover {
+  color: #ffffff;
+}
+.btn-brand--yellow::before {
+  background: #fde047;
+}
+.btn-brand--red::before {
+  background: #b5331f;
+}
+.btn-brand--black::before {
+  background: #d03f29;
+}
+
+.pill {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+}
+.pill:hover {
+  transform: translateY(-3px);
+  border-color: rgba(253, 240, 122, 0.7);
+  color: #fdf07a;
+}
+.pill--on-yellow:hover {
+  border-color: #d03f29;
+  color: #d03f29;
+}
+
+@supports selector(:has(*)) {
+  .timeline__item {
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .timeline__item::before {
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, background-color 0.35s ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .timeline__item:hover {
+      transform: translateX(6px);
+    }
+    .timeline__item:hover::before {
+      transform: scale(1.5);
+      background: #d03f29;
+      box-shadow: 0 0 0 6px rgba(208, 63, 41, 0.22);
+    }
+    .timeline__item:hover .timeline__role {
+      color: #fdf07a;
+    }
+  }
+  .timeline__role {
+    transition: color 0.3s ease;
+  }
+}
+.skill-bar {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.skill-bar__track {
+  transition: box-shadow 0.3s ease;
+}
+.skill-bar__level {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .skill-bar:hover {
+    transform: translateX(4px);
+  }
+  .skill-bar:hover .skill-bar__track {
+    box-shadow: 0 0 0 3px rgba(253, 240, 122, 0.15);
+  }
+  .skill-bar:hover .skill-bar__level {
+    color: #fdf07a;
+  }
+}
+
+.social-btn svg {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.social-btn:hover svg {
+  transform: rotate(-8deg) scale(1.12);
+}
+
+@supports selector(:has(*)) {
+  @media (hover: hover) and (pointer: fine) {
+    .shots:has(img:hover) img:not(:hover) {
+      opacity: 0.4;
+      transform: scale(0.97);
+    }
+  }
+}
+@supports selector(:has(*)) {
+  @media (hover: hover) and (pointer: fine) {
+    .nav__list:has(.nav__link:hover) .nav__link:not(:hover) {
+      opacity: 0.55;
+    }
+    .nav__link {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+  }
+}
+.hero__portrait {
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero__portrait:hover {
+    border-color: rgba(253, 240, 122, 0.5);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  }
+}
+.hero__portrait .initials {
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.4s ease;
+}
+.hero__portrait:hover .initials {
+  transform: scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt__inner {
+    transform: none !important;
+  }
+  .tilt__inner::after {
+    display: none;
+  }
+  .timeline__item:hover,
+  .skill-bar:hover {
+    transform: none;
+  }
+}
 .hero {
   position: relative;
   display: flex;
