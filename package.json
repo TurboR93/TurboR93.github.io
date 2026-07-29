@@ -1,0 +1,19 @@
+{
+  "name": "riccardo-brunello-cv",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Curriculum Vitae online di Riccardo Brunello — sito statico HTML + Sass + Bootstrap, pubblicato su GitHub Pages.",
+  "author": "Riccardo Brunello",
+  "license": "MIT",
+  "homepage": "https://turbor93.github.io",
+  "scripts": {
+    "css": "sass scss/main.scss assets/css/main.css --style=expanded --no-source-map",
+    "css:watch": "sass --watch scss/main.scss:assets/css/main.css --style=expanded --no-source-map",
+    "build": "sass scss/main.scss assets/css/main.css --style=compressed --no-source-map",
+    "serve": "npx --yes serve . -l 4173"
+  },
+  "devDependencies": {
+    "bootstrap": "^5.3.8",
+    "sass": "^1.102.0"
+  }
+}

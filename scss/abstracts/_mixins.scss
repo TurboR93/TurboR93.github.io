@@ -1,0 +1,125 @@
+// ===================================================================
+// MIXIN E FUNZIONI
+// ===================================================================
+
+@import 'tokens';
+
+// -------------------------------------------------------------------
+// Breakpoint
+// Allineati a quelli di hAutomatico (scala Tailwind), non a quelli
+// nativi di Bootstrap: vengono sovrascritti in main.scss prima
+// dell'import del framework, così i due sistemi restano coerenti.
+// -------------------------------------------------------------------
+$bp: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1536px,
+);
+
+/// Media query "da questo breakpoint in su".
+/// @example @include up(md) { ... }
+@mixin up($name) {
+  @if not map-has-key($bp, $name) {
+    @error "Breakpoint sconosciuto: #{$name}. Disponibili: #{map-keys($bp)}.";
+  }
+  @media (min-width: map-get($bp, $name)) {
+    @content;
+  }
+}
+
+/// Media query "fino a questo breakpoint escluso".
+@mixin down($name) {
+  @if not map-has-key($bp, $name) {
+    @error "Breakpoint sconosciuto: #{$name}. Disponibili: #{map-keys($bp)}.";
+  }
+  @media (max-width: map-get($bp, $name) - 0.02px) {
+    @content;
+  }
+}
+
+// -------------------------------------------------------------------
+// Layout
+// -------------------------------------------------------------------
+
+/// Contenitore centrato con la stessa progressione di hAutomatico.
+@mixin container($px: 1.5rem) {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: $px;
+
+  @each $name, $width in $bp {
+    @media (min-width: $width) {
+      max-width: $width;
+    }
+  }
+}
+
+/// Griglia responsive: da 1 colonna a N, con soglie esplicite.
+@mixin grid($gap: 2rem, $md: 2, $lg: null) {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $gap;
+
+  @include up(md) {
+    grid-template-columns: repeat($md, minmax(0, 1fr));
+  }
+  @if $lg {
+    @include up(lg) {
+      grid-template-columns: repeat($lg, minmax(0, 1fr));
+    }
+  }
+}
+
+// -------------------------------------------------------------------
+// Tipografia
+// -------------------------------------------------------------------
+
+/// Titolo di sezione: maiuscolo, peso massimo, dimensione fluida.
+@mixin heading($min, $max) {
+  font-size: $min;
+  font-weight: $fw-black;
+  text-transform: uppercase;
+  line-height: $lh-tight;
+  letter-spacing: $ls-tight;
+
+  @include up(md) {
+    font-size: $max;
+  }
+}
+
+/// Testo visibile solo agli screen reader.
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// -------------------------------------------------------------------
+// Superfici
+// -------------------------------------------------------------------
+
+/// Sezione su fondo scuro con gradiente.
+@mixin surface-dark {
+  position: relative;
+  background-color: $c-night;
+  background-image: $night-gradient;
+  color: $c-white;
+}
+
+/// Anello di focus coerente su tutto il sito. Serve anche come
+/// requisito di accessibilità: la messa a fuoco da tastiera
+/// dev'essere sempre percepibile.
+@mixin focus-ring($color: $c-yellow) {
+  &:focus-visible {
+    outline: 2px solid $color;
+    outline-offset: 2px;
+  }
+}

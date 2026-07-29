@@ -1,0 +1,215 @@
+// ===================================================================
+// HOME
+// ===================================================================
+
+@import '../abstracts/mixins';
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100svh;
+  padding-top: $header-h;
+  overflow: hidden;
+  @include surface-dark;
+
+  &__bg {
+    position: absolute;
+    inset: -5%;
+    z-index: $z-backdrop;
+    pointer-events: none;
+  }
+
+  &__inner {
+    @include container;
+    position: relative;
+    z-index: $z-content;
+    width: 100%;
+    padding-block: 4rem;
+  }
+
+  &__content {
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+
+    @include up(lg) {
+      grid-template-columns: 1.35fr 1fr;
+      gap: 4rem;
+    }
+  }
+
+  &__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 1.25rem;
+    padding: 0.375rem 0.875rem;
+    font-size: $fs-xs;
+    font-weight: $fw-bold;
+    text-transform: uppercase;
+    letter-spacing: $ls-wider;
+    color: $c-yellow;
+    border: 1px solid rgba(253, 240, 122, 0.35);
+    border-radius: $r-full;
+
+    // Pallino che segnala la disponibilità
+    &::before {
+      content: '';
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: $c-yellow;
+    }
+  }
+
+  &__title {
+    font-size: $fs-4xl;
+    font-weight: $fw-black;
+    text-transform: uppercase;
+    line-height: $lh-tight;
+    letter-spacing: $ls-tight;
+    color: $c-yellow;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+
+    @include up(sm) { font-size: $fs-5xl; }
+    @include up(md) { font-size: $fs-6xl; }
+    @include up(lg) { font-size: $fs-7xl; }
+
+    // La seconda riga in bianco crea il contrasto del titolo originale.
+    span { display: block; color: $c-white; }
+  }
+
+  &__lead {
+    max-width: 40rem;
+    margin-top: 1.5rem;
+    font-size: $fs-lg;
+    line-height: $lh-relaxed;
+    color: $w-80;
+
+    @include up(md) { font-size: $fs-xl; }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  // Ritratto o segnaposto tipografico
+  &__portrait {
+    position: relative;
+    justify-self: center;
+    width: min(100%, 20rem);
+    aspect-ratio: 1 / 1;
+    border-radius: $r-3xl;
+    overflow: hidden;
+    border: 1px solid $w-15;
+    background: $w-05;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Segnaposto usato finché non c'è una fotografia.
+  &__portrait-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    height: 100%;
+    background: $night-gradient;
+
+    .initials {
+      font-size: $fs-7xl;
+      font-weight: $fw-black;
+      line-height: 1;
+      color: $c-yellow;
+    }
+
+    .caption {
+      font-size: $fs-xs;
+      text-transform: uppercase;
+      letter-spacing: $ls-wider;
+      color: $w-40;
+    }
+  }
+
+  &__scroll-hint {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 1.5rem;
+    transform: translateX(-50%);
+    font-size: $fs-sm;
+    font-weight: $fw-medium;
+    text-transform: uppercase;
+    letter-spacing: $ls-widest;
+    color: $c-yellow;
+
+    @include up(md) { display: block; }
+  }
+}
+
+// -------------------------------------------------------------------
+// Numeri in evidenza
+// -------------------------------------------------------------------
+.stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding-top: 3rem;
+  border-top: 1px solid $w-10;
+
+  @include up(sm) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  &__value {
+    font-size: $fs-5xl;
+    font-weight: $fw-black;
+    line-height: 1;
+    color: $c-yellow;
+    margin-bottom: 0.5rem;
+
+    @include up(md) { font-size: $fs-6xl; }
+  }
+
+  &__label {
+    font-size: $fs-sm;
+    text-transform: uppercase;
+    letter-spacing: $ls-wider;
+    color: $w-60;
+  }
+}
+
+// -------------------------------------------------------------------
+// Blocco a due colonne testo/immagine
+// -------------------------------------------------------------------
+.split {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+
+  @include up(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  &--reverse {
+    @include up(md) {
+      .split__media { order: -1; }
+    }
+  }
+
+  &__media {
+    border-radius: $r-3xl;
+    overflow: hidden;
+    box-shadow: $shadow-2xl;
+  }
+}

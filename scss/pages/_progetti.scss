@@ -1,0 +1,132 @@
+// ===================================================================
+// PAGINA PROGETTI
+// ===================================================================
+
+@import '../abstracts/mixins';
+
+.projects {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @include up(md) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @include up(lg) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+// Progetto in primo piano: occupa tutta la larghezza e affianca
+// immagine e testo.
+.project-featured {
+  display: grid;
+  gap: 0;
+  overflow: hidden;
+  background: $w-05;
+  border: 1px solid $w-10;
+  border-radius: $r-3xl;
+  margin-bottom: 2rem;
+
+  @include up(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  &__media {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: $c-night-card;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+  }
+
+  &:hover &__media img { transform: scale(1.05); }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+
+    @include up(lg) { padding: 3rem; }
+  }
+
+  &__title {
+    font-size: $fs-3xl;
+    font-weight: $fw-black;
+    text-transform: uppercase;
+    color: $c-white;
+    margin-bottom: 0.75rem;
+
+    @include up(lg) { font-size: $fs-4xl; }
+  }
+
+  &__desc {
+    color: $w-70;
+    line-height: $lh-relaxed;
+    margin-bottom: 1.25rem;
+  }
+
+  &__points {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+
+    li {
+      position: relative;
+      padding-left: 1.25rem;
+      font-size: $fs-sm;
+      color: $w-70;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.55rem;
+        width: 0.375rem;
+        height: 0.375rem;
+        border-radius: 50%;
+        background: $c-yellow;
+      }
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+}
+
+// Galleria di miniature sotto un progetto
+.shots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+
+  @include up(lg) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: $r-2xl;
+    border: 1px solid $w-10;
+    transition: transform 0.35s $ease-spring, border-color 0.35s ease;
+
+    &:hover {
+      transform: scale(1.04);
+      border-color: rgba(253, 240, 122, 0.4);
+    }
+  }
+}
+
+// Elenco delle competenze dimostrate dal progetto
+.tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}

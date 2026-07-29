@@ -1,0 +1,239 @@
+// ===================================================================
+// HEADER STICKY
+//
+// Fisso in cima a ogni risoluzione (il requisito chiede lo sticky
+// almeno su mobile; qui vale ovunque, come su hAutomatico).
+//
+// Il menu mobile si apre con un elemento <details>: è un interruttore
+// nativo di HTML, quindi funziona senza una riga di JavaScript e porta
+// con sé la semantica e la gestione della tastiera già pronte.
+// ===================================================================
+
+@import '../abstracts/mixins';
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: $z-header;
+  background: $c-yellow;
+  transition: box-shadow $d-medium ease, background-color $d-medium ease;
+
+  // Su hAutomatico l'header diventa semitrasparente e sfocato dopo i
+  // primi 50px di scorrimento. Senza JavaScript non possiamo osservare
+  // la posizione, quindi lo stato sfocato è permanente: il risultato
+  // visivo è lo stesso appena la pagina si muove.
+  background: rgba(253, 240, 122, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: $shadow-lg;
+
+  &__inner {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.75rem;
+  }
+
+  &__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: $c-black;
+    @include focus-ring($c-red);
+
+    img {
+      height: 2.75rem;
+      width: auto;
+      object-fit: contain;
+    }
+
+    span {
+      font-size: $fs-xl;
+      font-weight: $fw-black;
+      letter-spacing: $ls-tight;
+      line-height: 1;
+
+      @include up(md) {
+        font-size: $fs-2xl;
+      }
+    }
+
+    small {
+      display: block;
+      font-size: $fs-10;
+      font-weight: $fw-bold;
+      text-transform: uppercase;
+      letter-spacing: $ls-wider;
+      color: $b-70;
+    }
+  }
+}
+
+// -------------------------------------------------------------------
+// Navigazione
+// -------------------------------------------------------------------
+.nav {
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  &__link {
+    position: relative;
+    display: inline-block;
+    font-size: $fs-sm;
+    font-weight: $fw-bold;
+    text-transform: uppercase;
+    color: $c-black;
+    padding-block: 0.25rem;
+    transition: transform $d-fast ease;
+    @include focus-ring($c-red);
+
+    // Sottolineatura che si apre da sinistra al passaggio del mouse.
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: $c-red;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform $d-medium $ease-brand;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      &::after { transform: scaleX(1); }
+    }
+
+    // La pagina corrente resta sottolineata in modo permanente.
+    &[aria-current='page']::after {
+      transform: scaleX(1);
+    }
+  }
+
+  &__cta {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    font-size: $fs-sm;
+    font-weight: $fw-black;
+    text-transform: uppercase;
+    color: $c-yellow;
+    background: $c-black;
+    border-radius: $r-full;
+    transition: background-color $d-fast ease, color $d-fast ease;
+    @include focus-ring($c-red);
+
+    &:hover {
+      background: $c-red;
+      color: $c-white;
+    }
+  }
+}
+
+// Navigazione da tablet in su
+.nav--desktop {
+  display: none;
+
+  @include up(md) {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+// -------------------------------------------------------------------
+// Menu mobile: <details> come interruttore, zero JavaScript
+// -------------------------------------------------------------------
+.nav--mobile {
+  @include up(md) {
+    display: none;
+  }
+
+  // Nasconde il triangolino nativo su tutti i motori.
+  summary {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    color: $c-black;
+    border-radius: $r-xl;
+    cursor: pointer;
+    @include focus-ring($c-red);
+
+    &::-webkit-details-marker { display: none; }
+    &:hover { background: $b-05; }
+  }
+
+  // Le due icone si alternano in base allo stato di apertura.
+  .icon-close { display: none; }
+  &[open] .icon-open  { display: none; }
+  &[open] .icon-close { display: block; }
+
+  &__panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    padding: 1rem 1.5rem 1.5rem;
+    background: $c-yellow;
+    border-top: 1px solid $b-10;
+    box-shadow: $shadow-lg;
+  }
+
+  .nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+  }
+
+  .nav__link {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid $b-10;
+
+    &::after { display: none; }
+    &:hover { color: $c-red; transform: none; }
+    &[aria-current='page'] { color: $c-red; }
+  }
+
+  .nav__cta {
+    margin-top: 1rem;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav--mobile[open] .nav--mobile__panel {
+    animation: reveal-up 0.25s $ease-brand both;
+  }
+}
+
+// -------------------------------------------------------------------
+// Barra di avanzamento della lettura
+// -------------------------------------------------------------------
+.read-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: $z-header + 1;
+  height: 3px;
+  pointer-events: none;
+
+  &__bar {
+    height: 100%;
+    background: $c-red;
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+}
+
+// Lo spazio che il contenuto deve lasciare sotto l'header fisso.
+.header-offset {
+  padding-top: $header-h;
+}

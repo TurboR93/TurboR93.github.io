@@ -1,0 +1,146 @@
+// ===================================================================
+// TOKEN DI DESIGN
+// Valori estratti dal sito hAutomatico (hautomatico.com) per mantenere
+// una identità visiva coerente fra il sito aziendale e questo CV.
+// ===================================================================
+
+// -------------------------------------------------------------------
+// Colori brand
+// -------------------------------------------------------------------
+$c-yellow:       #fdf07a;   // giallo brand: sfondi chiari, titoli su fondo scuro
+$c-yellow-hover: #fde047;   // hover dei bottoni gialli
+$c-red:          #d03f29;   // rosso brand: accenti, titoli di sezione, CTA
+$c-red-hover:    #b5331f;   // hover dei bottoni rossi
+$c-night:        #1a1a1a;   // fondo scuro: mai #000 puro, sarebbe troppo piatto
+$c-night-card:   #111111;   // fondo delle card su sezione scura
+$c-black:        #000000;
+$c-white:        #ffffff;
+
+// Gradiente di fondo delle sezioni scure
+$night-gradient: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 30%, #1f1f1f 70%, #0f0f0f 100%);
+
+// -------------------------------------------------------------------
+// Trasparenze ricorrenti
+// -------------------------------------------------------------------
+$w-05: rgba(255, 255, 255, 0.05);   // fondo card su scuro
+$w-10: rgba(255, 255, 255, 0.10);   // bordo card su scuro
+$w-15: rgba(255, 255, 255, 0.15);   // bordo input
+$w-20: rgba(255, 255, 255, 0.20);
+$w-30: rgba(255, 255, 255, 0.30);
+$w-40: rgba(255, 255, 255, 0.40);
+$w-50: rgba(255, 255, 255, 0.50);
+$w-60: rgba(255, 255, 255, 0.60);
+$w-70: rgba(255, 255, 255, 0.70);
+$w-80: rgba(255, 255, 255, 0.80);
+$w-90: rgba(255, 255, 255, 0.90);
+
+$b-05: rgba(0, 0, 0, 0.05);         // fondo card su giallo
+$b-10: rgba(0, 0, 0, 0.10);
+$b-30: rgba(0, 0, 0, 0.30);
+$b-50: rgba(0, 0, 0, 0.50);
+$b-70: rgba(0, 0, 0, 0.70);
+$b-80: rgba(0, 0, 0, 0.80);
+
+// -------------------------------------------------------------------
+// Tratti decorativi, per variante di sfondo
+// -------------------------------------------------------------------
+$stroke: (
+  on-dark: (
+    line:   rgba(253, 240, 122, 0.20),
+    faint:  rgba(255, 255, 255, 0.09),
+    accent: rgba(208, 63, 41, 0.60),
+    dot:    rgba(253, 240, 122, 0.38),
+  ),
+  on-yellow: (
+    line:   rgba(0, 0, 0, 0.15),
+    faint:  rgba(0, 0, 0, 0.07),
+    accent: rgba(208, 63, 41, 0.50),
+    dot:    rgba(208, 63, 41, 0.45),
+  ),
+  on-red: (
+    line:   rgba(255, 255, 255, 0.24),
+    faint:  rgba(255, 255, 255, 0.11),
+    accent: rgba(253, 240, 122, 0.72),
+    dot:    rgba(253, 240, 122, 0.62),
+  ),
+);
+
+// -------------------------------------------------------------------
+// Tipografia
+// PT Sans esiste su Google Fonts solo nei pesi 400 e 700: il peso 900
+// viene comunque risolto dal browser sulla faccia bold reale (700).
+// -------------------------------------------------------------------
+$font-sans: 'PT Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+$fw-regular: 400;
+$fw-medium:  500;
+$fw-bold:    700;
+$fw-black:   900;
+
+// Scala tipografica
+$fs-9:    0.5625rem;
+$fs-10:   0.625rem;
+$fs-xs:   0.75rem;
+$fs-sm:   0.875rem;
+$fs-base: 1rem;
+$fs-lg:   1.125rem;
+$fs-xl:   1.25rem;
+$fs-2xl:  1.5rem;
+$fs-3xl:  1.875rem;
+$fs-4xl:  2.25rem;
+$fs-5xl:  3rem;
+$fs-6xl:  3.75rem;
+$fs-7xl:  4.5rem;
+$fs-8xl:  6rem;
+
+$lh-none:    1;
+$lh-tight:   1.25;
+$lh-normal:  1.5;
+$lh-relaxed: 1.625;
+
+$ls-tight:   -0.025em;
+$ls-wide:    0.025em;
+$ls-wider:   0.05em;
+$ls-widest:  0.1em;
+
+// -------------------------------------------------------------------
+// Raggi, ombre, sfocature
+// -------------------------------------------------------------------
+$r-xl:   0.75rem;
+$r-2xl:  1rem;
+$r-3xl:  1.5rem;
+$r-full: 9999px;
+
+$shadow-lg:  0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+$shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+$shadow-card-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+
+// -------------------------------------------------------------------
+// Ritmo verticale
+// -------------------------------------------------------------------
+$section-py:    5rem;    // padding verticale sezione standard
+$page-hero-pt:  8rem;    // spazio sotto l'header fisso
+// Altezza dell'header sticky. Espressa in rem (5rem = 80px) perché
+// entra in somme con altre misure: mescolare px e rem è un errore in Sass.
+$header-h:      5rem;
+
+// -------------------------------------------------------------------
+// Easing e durate
+// La curva usata su hAutomatico per quasi ogni animazione discreta.
+// -------------------------------------------------------------------
+$ease-brand:  cubic-bezier(0.22, 1, 0.36, 1);
+$ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);   // leggero sovraelongamento (hover card)
+
+$d-reveal:  0.7s;
+$d-text:    0.8s;
+$d-stagger: 0.12s;
+$d-fast:    0.15s;
+$d-medium:  0.3s;
+
+// -------------------------------------------------------------------
+// Livelli di sovrapposizione
+// -------------------------------------------------------------------
+$z-backdrop: 0;
+$z-content:  10;
+$z-header:   50;

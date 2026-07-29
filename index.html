@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Riccardo Brunello — Sviluppatore web e automazione per PMI</title>
+  <meta name="description" content="Sviluppo software gestionali, applicazioni web e automazioni su misura per le piccole e medie imprese. Curriculum, progetti e contatti.">
+  <meta name="author" content="Riccardo Brunello">
+  <link rel="canonical" href="https://turbor93.github.io/">
+  <meta name="theme-color" content="#D03F29">
+
+  <!-- Open Graph: come appare il sito quando viene condiviso -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:site_name" content="Riccardo Brunello">
+  <meta property="og:title" content="Riccardo Brunello — Sviluppatore web e automazione per PMI">
+  <meta property="og:description" content="Sviluppo software gestionali, applicazioni web e automazioni su misura per le piccole e medie imprese. Curriculum, progetti e contatti.">
+  <meta property="og:url" content="https://turbor93.github.io/">
+  <meta property="og:image" content="https://turbor93.github.io/assets/img/og/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Riccardo Brunello, sviluppatore web e automazione per PMI">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Riccardo Brunello — Sviluppatore web e automazione per PMI">
+  <meta name="twitter:description" content="Sviluppo software gestionali, applicazioni web e automazioni su misura per le piccole e medie imprese.">
+  <meta name="twitter:image" content="https://turbor93.github.io/assets/img/og/og-default.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/favicon-192.png">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- Dati strutturati per i motori di ricerca -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Riccardo Brunello",
+    "url": "https://turbor93.github.io/",
+    "jobTitle": "Sviluppatore web e consulente di automazione",
+    "sameAs": [
+      "https://github.com/TurboR93",
+      "https://www.linkedin.com/in/riccardo-brunello-0a167869",
+      "https://hautomatico.com"
+    ],
+    "knowsAbout": ["Sviluppo web", "TypeScript", "React", "Automazione aziendale", "Basi di dati"]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#contenuto">Salta al contenuto</a>
+
+  <!-- Barra di avanzamento della lettura -->
+  <div class="read-progress" aria-hidden="true"><div class="read-progress__bar"></div></div>
+
+  <!-- ============================ HEADER ============================ -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="index.html">
+        <img src="assets/logo/hautomatico-mark-red.png" alt="" width="44" height="44">
+        <span>
+          Riccardo Brunello
+          <small>Sviluppo web &amp; automazione</small>
+        </span>
+      </a>
+
+      <!-- Navigazione da tablet in su -->
+      <nav class="nav--desktop" aria-label="Navigazione principale">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html" aria-current="page">Home</a></li>
+          <li><a class="nav__link" href="cv.html">Curriculum</a></li>
+          <li><a class="nav__link" href="progetti.html">Progetti</a></li>
+        </ul>
+        <a class="nav__cta" href="contatti.html">Contattami</a>
+      </nav>
+
+      <!-- Menu mobile: <details> è un interruttore nativo, niente JavaScript -->
+      <details class="nav--mobile">
+        <summary aria-label="Apri il menu di navigazione">
+          <svg class="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </summary>
+        <nav class="nav--mobile__panel" aria-label="Navigazione mobile">
+          <ul class="nav__list">
+            <li><a class="nav__link" href="index.html" aria-current="page">Home</a></li>
+            <li><a class="nav__link" href="cv.html">Curriculum</a></li>
+            <li><a class="nav__link" href="progetti.html">Progetti</a></li>
+            <li><a class="nav__link" href="contatti.html">Contattami</a></li>
+          </ul>
+          <a class="nav__cta" href="contatti.html">Scrivimi</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="contenuto">
+
+    <!-- ============================ HERO ============================ -->
+    <section class="hero">
+      <div class="hero__bg parallax" style="--drift: 40px" aria-hidden="true">
+        <div class="grid-backdrop"></div>
+        <div class="orb orb--grey breathe" style="top: 12%; left: 8%"></div>
+        <div class="orb orb--red breathe" style="bottom: 5%; right: 2%"></div>
+      </div>
+
+      <div class="hero__inner">
+        <div class="hero__content">
+          <div>
+            <p class="hero__eyebrow">Disponibile per nuovi progetti</p>
+
+            <h1 class="hero__title">
+              Costruisco software
+              <span>che fa lavorare meno</span>
+            </h1>
+
+            <p class="hero__lead">
+              Sviluppo applicazioni web e gestionali su misura per piccole e medie
+              imprese: prenotazioni, preventivi, fatturazione, siti vetrina. Parto
+              sempre dal processo reale dell'azienda, non dalla tecnologia.
+            </p>
+
+            <div class="hero__actions">
+              <a class="btn-brand btn-brand--yellow btn-brand--lg" href="cv.html">
+                Guarda il curriculum
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a class="btn-brand btn-brand--outline-light btn-brand--lg" href="progetti.html">
+                Vedi i progetti
+              </a>
+            </div>
+          </div>
+
+          <!-- Ritratto. Il segnaposto resta finché non c'è una fotografia:
+               basta sostituire questo blocco con un <img>. -->
+          <div class="hero__portrait">
+            <div class="hero__portrait-placeholder">
+              <span class="initials">RB</span>
+              <span class="caption">Riccardo Brunello</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="hero__scroll-hint bob" aria-hidden="true">Scorri</p>
+    </section>
+
+    <!-- ==================== COSA SO FARE ==================== -->
+    <section class="section section--dark" id="competenze">
+      <div class="grid-backdrop" aria-hidden="true"></div>
+
+      <div class="section__inner">
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__track">
+            <span class="marquee__item">TypeScript</span><span class="marquee__sep">◆</span>
+            <span class="marquee__item">React</span><span class="marquee__sep">◆</span>
+            <span class="marquee__item">HTML &amp; CSS</span><span class="marquee__sep">◆</span>
+            <span class="marquee__item">Sass</span><span class="marquee__sep">◆</span>
+            <span class="marquee__item">Python</span><span class="marquee__sep">◆</span>
+            <span class="marquee__item">SQL</span><span class="marquee__sep">◆</span>
+            <span class="marquee__item">Automazione</span><span class="marquee__sep">◆</span>
+          </div>
+          <div class="marquee__track">
+            <span class="marquee__item">TypeScript</span><span class="marquee__sep">◆</span>
+            <span class="marquee__item">React</span><span class="marquee__sep">◆</span>
+            <span class="marquee__item">HTML &amp; CSS</span><span class="marquee__sep">◆</span>
+            <span class="marquee__item">Sass</span><span class="marquee__sep">◆</span>
+            <span class="marquee__item">Python</span><span class="marquee__sep">◆</span>
+            <span class="marquee__item">SQL</span><span class="marquee__sep">◆</span>
+            <span class="marquee__item">Automazione</span><span class="marquee__sep">◆</span>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <h2 class="h-section h-on-dark">Cosa so fare</h2>
+          <div class="accent-line"></div>
+          <p class="lead text-muted-dark" style="max-width: 46rem">
+            Tre ambiti che nella pratica si intrecciano quasi sempre: un gestionale
+            ha bisogno di un'interfaccia, un sito ha bisogno di dati, un'automazione
+            ha bisogno di entrambi.
+          </p>
+        </div>
+
+        <div class="grid-3 reveal-stagger" style="margin-top: 3rem">
+          <article class="card-lift">
+            <div class="card-dark">
+              <div class="card-dark__body">
+                <h3 class="h-card">Applicazioni web</h3>
+                <p>
+                  Gestionali completi: anagrafiche, preventivi, stati di avanzamento,
+                  fatturazione. Interfacce che chi lavora capisce senza manuale.
+                </p>
+                <div class="tech-row" style="margin-top: 1rem">
+                  <span class="pill">TypeScript</span>
+                  <span class="pill">React</span>
+                  <span class="pill">SQL</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-lift">
+            <div class="card-dark">
+              <div class="card-dark__body">
+                <h3 class="h-card">Siti e vetrine</h3>
+                <p>
+                  Siti statici veloci, responsive e curati nella comunicazione.
+                  Ottimizzati per farsi trovare e per caricarsi in fretta anche
+                  sotto rete lenta.
+                </p>
+                <div class="tech-row" style="margin-top: 1rem">
+                  <span class="pill">HTML</span>
+                  <span class="pill">CSS</span>
+                  <span class="pill">Sass</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-lift">
+            <div class="card-dark">
+              <div class="card-dark__body">
+                <h3 class="h-card">Automazione e dati</h3>
+                <p>
+                  Attività ripetitive che diventano procedure automatiche, basi di
+                  dati che rispondono a domande utili invece di accumulare righe.
+                </p>
+                <div class="tech-row" style="margin-top: 1rem">
+                  <span class="pill">Python</span>
+                  <span class="pill">Basi di dati</span>
+                  <span class="pill">Integrazioni</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divisore ondulato: da fondo scuro a fondo giallo -->
+    <div class="wavy" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="wavy__back" fill="#FDF07A" d="M0,64 C240,112 480,16 720,48 C960,80 1200,112 1440,72 L1440,120 L0,120 Z"/>
+        <path fill="#FDF07A" d="M0,88 C240,40 480,104 720,80 C960,56 1200,24 1440,56 L1440,120 L0,120 Z"/>
+      </svg>
+    </div>
+
+    <!-- ==================== IN BREVE ==================== -->
+    <section class="section section--yellow section--stitch" id="chi-sono">
+      <div class="section__inner">
+        <div class="split">
+          <div class="reveal-left">
+            <h2 class="h-section h-on-yellow">Chi sono</h2>
+            <div class="accent-line"></div>
+            <p class="lead" style="color: rgba(0,0,0,.8)">
+              Mi occupo di sviluppo web e automazione per le piccole e medie imprese.
+              Lavoro sotto il marchio <strong>hAutomatico</strong>, con cui progetto
+              e realizzo gestionali, siti e integrazioni su misura.
+            </p>
+            <p style="color: rgba(0,0,0,.7); margin-top: 1rem; line-height: 1.625">
+              Quello che mi interessa non è la tecnologia in sé, ma il momento in cui
+              qualcuno smette di compilare un foglio di calcolo a mano perché il
+              software lo fa al posto suo. Per questo parto sempre dal processo:
+              guardo come si lavora davvero, poi decido cosa costruire.
+            </p>
+
+            <div class="hero__actions">
+              <a class="btn-brand btn-brand--red" href="cv.html">
+                Il percorso completo
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a class="btn-brand btn-brand--outline-dark" href="contatti.html">Scrivimi</a>
+            </div>
+          </div>
+
+          <div class="reveal-right">
+            <div class="grid-2" style="gap: 1.5rem">
+              <div class="card-value">
+                <h3>Processo prima di tutto</h3>
+                <p>Capire come si lavora oggi viene prima di scegliere qualsiasi strumento.</p>
+              </div>
+              <div class="card-value">
+                <h3>Consegne piccole</h3>
+                <p>Meglio qualcosa di funzionante subito che tutto perfetto fra sei mesi.</p>
+              </div>
+              <div class="card-value">
+                <h3>Codice leggibile</h3>
+                <p>Scritto per essere ripreso fra un anno, anche da qualcun altro.</p>
+              </div>
+              <div class="card-value">
+                <h3>Niente scatole nere</h3>
+                <p>Il cliente deve poter capire, e possedere, quello che ha comprato.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divisore: da giallo a rosso -->
+    <div class="wavy" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="wavy__back" fill="#D03F29" d="M0,72 C240,24 480,104 720,64 C960,24 1200,88 1440,56 L1440,120 L0,120 Z"/>
+        <path fill="#D03F29" d="M0,96 C240,56 480,32 720,72 C960,112 1200,64 1440,88 L1440,120 L0,120 Z"/>
+      </svg>
+    </div>
+
+    <!-- ==================== INVITO AL CONTATTO ==================== -->
+    <section class="section section--red section--stitch">
+      <div class="section__inner" style="text-align: center">
+        <div class="reveal">
+          <h2 class="h-section h-on-red">Parliamone</h2>
+          <div class="accent-line accent-line--on-red accent-line--center"></div>
+          <p class="lead" style="max-width: 40rem; margin-inline: auto; color: rgba(255,255,255,.85)">
+            Hai un processo che ti ruba tempo, o un'idea da mettere online?
+            Scrivimi due righe: ti rispondo dicendoti onestamente se posso esserti utile.
+          </p>
+          <div class="hero__actions" style="justify-content: center">
+            <a class="btn-brand btn-brand--yellow btn-brand--lg" href="contatti.html">
+              Scrivimi
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <div class="wavy" aria-hidden="true">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wavy__back" fill="#FDF07A" d="M0,64 C240,112 480,16 720,48 C960,80 1200,112 1440,72 L1440,120 L0,120 Z"/>
+      <path fill="#FDF07A" d="M0,88 C240,40 480,104 720,80 C960,56 1200,24 1440,56 L1440,120 L0,120 Z"/>
+    </svg>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <div class="site-footer__block">
+          <h3>Riccardo Brunello</h3>
+          <p>
+            Sviluppo web, gestionali e automazione per le piccole e medie imprese.
+            Attivo con il marchio hAutomatico.
+          </p>
+          <div class="site-footer__social">
+            <a class="social-btn" href="https://github.com/TurboR93" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+              GitHub
+            </a>
+            <a class="social-btn" href="https://www.linkedin.com/in/riccardo-brunello-0a167869" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5M3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.76-2.05 4.02 0 4.76 2.65 4.76 6.1V21h-4v-5.4c0-1.3-.02-2.96-1.8-2.96-1.8 0-2.08 1.4-2.08 2.86V21H9z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <div class="site-footer__block">
+          <h4>Navigazione</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cv.html">Curriculum</a></li>
+            <li><a href="progetti.html">Progetti</a></li>
+            <li><a href="contatti.html">Contattami</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__block">
+          <h4>Contatti</h4>
+          <p>
+            Per non lasciare l'indirizzo in pasto ai raccoglitori automatici,
+            i messaggi passano dal
+            <a href="contatti.html" style="text-decoration: underline"><strong>modulo di contatto</strong></a>.
+          </p>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <span>&copy; 2026 Riccardo Brunello</span>
+        <span class="sep">·</span>
+        <span>Sito realizzato in HTML, Sass e Bootstrap</span>
+        <span class="sep">·</span>
+        <a href="https://github.com/TurboR93/TurboR93.github.io" target="_blank" rel="noopener noreferrer">Codice sorgente</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

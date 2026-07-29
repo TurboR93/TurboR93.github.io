@@ -1,0 +1,213 @@
+// ===================================================================
+// MOVIMENTO — SOLO CSS, NESSUN JAVASCRIPT
+//
+// hAutomatico ottiene i suoi effetti con Lenis e Framer Motion. Qui gli
+// stessi comportamenti sono riprodotti con le "scroll-driven animations"
+// native del CSS: `animation-timeline: view()` lega l'avanzamento
+// dell'animazione all'attraversamento del viewport da parte
+// dell'elemento, `scroll()` lo lega allo scorrimento del documento.
+//
+// PRINCIPIO NON NEGOZIABILE: lo stato di riposo di ogni elemento è
+// quello VISIBILE. Le animazioni vivono dentro `@supports`, quindi un
+// browser che non le conosce mostra semplicemente la pagina completa,
+// senza nulla di nascosto. Nessun contenuto dipende da un'animazione
+// per essere leggibile.
+// ===================================================================
+
+@import '../abstracts/mixins';
+
+// -------------------------------------------------------------------
+// Fotogrammi chiave
+// -------------------------------------------------------------------
+
+// Comparsa dal basso: equivale al Reveal di hAutomatico
+// (opacity 0→1, y 30px→0, durata 0.7s, curva cubic-bezier(.22,1,.36,1)).
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// Titolo che sale da dietro una maschera.
+@keyframes reveal-mask {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// Ingresso laterale, per i blocchi affiancati.
+@keyframes reveal-left {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes reveal-right {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+// Il tratto di accento che si disegna da sinistra.
+@keyframes draw-line {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+// Deriva verticale lenta: è la parallasse. L'elemento si muove più
+// lentamente dello scorrimento, creando la sensazione di profondità.
+@keyframes parallax-drift {
+  from { transform: translateY(var(--drift, 60px)); }
+  to   { transform: translateY(calc(var(--drift, 60px) * -1)); }
+}
+
+// Ingrandimento progressivo dello sfondo dell'hero.
+@keyframes hero-zoom {
+  from { transform: scale(1) translateY(0); }
+  to   { transform: scale(1.08) translateY(-40px); }
+}
+
+// Il contenuto dell'hero che sfuma e sale mentre si scorre via.
+@keyframes hero-exit {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(-110px) scale(0.92); }
+}
+
+// Barra di avanzamento della lettura, in cima alla pagina.
+@keyframes progress-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+// Respiro lento degli elementi decorativi di sfondo.
+@keyframes breathe {
+  0%, 100% { opacity: 0.45; }
+  50%      { opacity: 0.7; }
+}
+
+// Scorrimento continuo della striscia di parole chiave.
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+// Indicatore "scorri" nell'hero.
+@keyframes bob {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50%      { transform: translateY(8px); opacity: 1; }
+}
+
+// -------------------------------------------------------------------
+// Classi applicabili nel markup
+// Fuori da @supports non fanno nulla: l'elemento è già al suo posto.
+// -------------------------------------------------------------------
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-mask > * {
+      animation-timeline: view();
+      // L'animazione si consuma fra il momento in cui l'elemento entra
+      // dal basso e quello in cui ha coperto il 40% del viewport.
+      animation-range: entry 0% cover 40%;
+      animation-fill-mode: both;
+      animation-timing-function: $ease-brand;
+      animation-duration: 1ms; // la durata reale la detta lo scorrimento
+    }
+
+    .reveal        { animation-name: reveal-up; }
+    .reveal-left   { animation-name: reveal-left; }
+    .reveal-right  { animation-name: reveal-right; }
+
+    // Titolo mascherato: il contenitore ritaglia, il figlio sale.
+    .reveal-mask {
+      overflow: hidden;
+      > * { animation-name: reveal-mask; }
+    }
+
+    // Comparsa a cascata: ogni figlio parte un po' più tardi del
+    // precedente, come lo stagger di 0.12s dell'originale.
+    .reveal-stagger > * {
+      animation: reveal-up 1ms $ease-brand both;
+      animation-timeline: view();
+      animation-fill-mode: both;
+    }
+    // L'intervallo va costruito con unquote(): scritto per esteso, Sass
+    // leggerebbe il segno % come operatore di modulo anziché come unità.
+    @for $i from 1 through 8 {
+      $start: ($i - 1) * 6;
+      $end: 35 + $i * 4;
+
+      .reveal-stagger > *:nth-child(#{$i}) {
+        animation-range: unquote('entry #{$start}% cover #{$end}%');
+      }
+    }
+
+    // Tratto di accento che si disegna.
+    .accent-line {
+      animation: draw-line 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+
+    // Parallasse: l'intensità si regola nel markup con --drift.
+    .parallax {
+      animation: parallax-drift 1ms linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+      will-change: transform;
+    }
+
+    // Hero legato allo scorrimento del documento, non del singolo
+    // elemento: replica la "macchina" da 200vh dell'originale.
+    .hero__bg {
+      animation: hero-zoom 1ms linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 100vh;
+      will-change: transform;
+    }
+
+    .hero__content {
+      animation: hero-exit 1ms $ease-brand both;
+      animation-timeline: scroll(root block);
+      animation-range: 20vh 90vh;
+      will-change: transform, opacity;
+    }
+
+    // Barra di avanzamento della lettura.
+    .read-progress__bar {
+      animation: progress-grow 1ms linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+// -------------------------------------------------------------------
+// Animazioni indipendenti dallo scorrimento
+// -------------------------------------------------------------------
+@media (prefers-reduced-motion: no-preference) {
+  .breathe  { animation: breathe 9s ease-in-out infinite; }
+  .bob      { animation: bob 2.2s ease-in-out infinite; }
+
+  .marquee__track {
+    animation: marquee 32s linear infinite;
+  }
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+}
+
+// -------------------------------------------------------------------
+// Rispetto della preferenza di sistema "riduci il movimento"
+// Chi la attiva vede la pagina intera, ferma. Nessuna eccezione.
+// -------------------------------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html { scroll-behavior: auto; }
+}

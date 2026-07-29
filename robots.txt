@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Pagine di servizio: non hanno valore nei risultati di ricerca
+Disallow: /grazie.html
+
+Sitemap: https://turbor93.github.io/sitemap.xml

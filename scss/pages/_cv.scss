@@ -1,0 +1,344 @@
+// ===================================================================
+// PAGINA CV
+// Impaginata con CSS Grid: due colonne su desktop (colonna principale
+// per il percorso, laterale per competenze e dati), una sola su mobile.
+// ===================================================================
+
+@import '../abstracts/mixins';
+
+.cv {
+  display: grid;
+  gap: 3rem;
+  align-items: start;
+
+  @include up(lg) {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 4rem;
+  }
+}
+
+// La colonna laterale accompagna lo scorrimento sui grandi schermi.
+.cv__aside {
+  display: grid;
+  gap: 2rem;
+
+  @include up(lg) {
+    position: sticky;
+    top: $header-h + 2rem;
+  }
+}
+
+.cv-block {
+  & + & { margin-top: 3rem; }
+
+  &__title {
+    font-size: $fs-2xl;
+    font-weight: $fw-black;
+    text-transform: uppercase;
+    color: $c-yellow;
+    margin-bottom: 0.75rem;
+
+    @include up(md) { font-size: $fs-3xl; }
+  }
+}
+
+// -------------------------------------------------------------------
+// Percorso: linea verticale con pallini
+// -------------------------------------------------------------------
+.timeline {
+  position: relative;
+  padding-left: 1.75rem;
+
+  // La linea continua che unisce le tappe.
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0.3125rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    background: linear-gradient(180deg, $c-yellow, rgba(253, 240, 122, 0.15));
+  }
+
+  &__item {
+    position: relative;
+    padding-bottom: 2.25rem;
+
+    &:last-child { padding-bottom: 0; }
+
+    // Il pallino della tappa.
+    &::before {
+      content: '';
+      position: absolute;
+      left: -1.75rem;
+      top: 0.45rem;
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      background: $c-yellow;
+      box-shadow: 0 0 0 4px rgba(253, 240, 122, 0.15);
+    }
+
+    // La tappa in corso si distingue per colore.
+    &--current::before {
+      background: $c-red;
+      box-shadow: 0 0 0 4px rgba(208, 63, 41, 0.25);
+    }
+  }
+
+  &__period {
+    display: inline-block;
+    margin-bottom: 0.375rem;
+    font-family: $font-mono;
+    font-size: $fs-xs;
+    font-weight: $fw-bold;
+    letter-spacing: $ls-wide;
+    color: $c-yellow;
+  }
+
+  &__role {
+    font-size: $fs-xl;
+    font-weight: $fw-black;
+    text-transform: uppercase;
+    line-height: $lh-tight;
+    color: $c-white;
+    margin-bottom: 0.25rem;
+  }
+
+  &__org {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.625rem;
+    font-size: $fs-sm;
+    font-weight: $fw-bold;
+    color: $w-60;
+
+    .dot { color: $w-30; }
+  }
+
+  &__desc {
+    color: $w-70;
+    line-height: $lh-relaxed;
+    margin-bottom: 0.75rem;
+  }
+
+  &__points {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 0.875rem;
+
+    li {
+      position: relative;
+      padding-left: 1.125rem;
+      font-size: $fs-sm;
+      line-height: $lh-relaxed;
+      color: $w-70;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.6rem;
+        width: 0.375rem;
+        height: 0.375rem;
+        border-radius: 50%;
+        background: $c-red;
+      }
+    }
+  }
+}
+
+// -------------------------------------------------------------------
+// Competenze
+// -------------------------------------------------------------------
+.skills {
+  display: grid;
+  gap: 1.5rem;
+
+  &__group-title {
+    font-size: $fs-xs;
+    font-weight: $fw-bold;
+    text-transform: uppercase;
+    letter-spacing: $ls-wider;
+    color: $w-50;
+    margin-bottom: 0.625rem;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+// Livello di competenza reso con una barra.
+.skill-bar {
+  margin-bottom: 0.875rem;
+
+  &__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.375rem;
+  }
+
+  &__name {
+    font-size: $fs-sm;
+    font-weight: $fw-bold;
+    color: $w-90;
+  }
+
+  &__level {
+    font-family: $font-mono;
+    font-size: $fs-xs;
+    color: $w-50;
+  }
+
+  &__track {
+    height: 6px;
+    background: $w-10;
+    border-radius: $r-full;
+    overflow: hidden;
+  }
+
+  &__fill {
+    height: 100%;
+    width: var(--level, 50%);
+    background: linear-gradient(90deg, $c-red, $c-yellow);
+    border-radius: $r-full;
+    transform-origin: left center;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .skill-bar__fill {
+      animation: draw-line 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 35%;
+    }
+  }
+}
+
+// -------------------------------------------------------------------
+// Dati anagrafici e lingue
+// -------------------------------------------------------------------
+.fact-list {
+  display: grid;
+  gap: 0.875rem;
+
+  div {
+    display: grid;
+    gap: 0.125rem;
+  }
+
+  dt {
+    font-size: $fs-xs;
+    font-weight: $fw-bold;
+    text-transform: uppercase;
+    letter-spacing: $ls-wide;
+    color: $w-50;
+  }
+
+  dd {
+    font-size: $fs-base;
+    color: $w-90;
+  }
+}
+
+.lang {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.625rem;
+  border-bottom: 1px solid $w-10;
+
+  &:last-child { border-bottom: none; }
+
+  &__name { font-weight: $fw-bold; color: $w-90; }
+
+  &__level {
+    font-family: $font-mono;
+    font-size: $fs-xs;
+    color: $c-yellow;
+  }
+}
+
+// Riquadro con azioni rapide (scarica, contatta)
+.cv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+// -------------------------------------------------------------------
+// Versione stampabile
+// Chi apre il CV e preme "stampa" deve ottenere un foglio leggibile:
+// niente fondi scuri che divorano il toner, niente menu, niente
+// elementi decorativi. Gli indirizzi dei collegamenti vengono esplicitati.
+// -------------------------------------------------------------------
+@media print {
+  .site-header,
+  .site-footer,
+  .read-progress,
+  .cv-actions,
+  .wavy,
+  .orb,
+  .grid-backdrop,
+  .marquee,
+  .skip-link {
+    display: none !important;
+  }
+
+  body {
+    color: #000;
+    background: #fff;
+    font-size: 11pt;
+  }
+
+  .section,
+  .section--dark,
+  .page-hero {
+    padding-block: 0.75rem;
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .cv {
+    display: block;
+  }
+
+  .cv__aside {
+    position: static;
+    margin-top: 1.5rem;
+    break-inside: avoid;
+  }
+
+  .cv-block__title,
+  .timeline__period,
+  .timeline__role {
+    color: #000 !important;
+  }
+
+  .timeline__desc,
+  .timeline__points li,
+  .fact-list dd {
+    color: #333 !important;
+  }
+
+  .timeline__item {
+    break-inside: avoid;
+  }
+
+  // Rende visibile la destinazione dei collegamenti sulla carta.
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 9pt;
+    color: #555;
+  }
+}

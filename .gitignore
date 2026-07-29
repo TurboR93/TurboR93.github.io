@@ -1,0 +1,19 @@
+# Dipendenze
+node_modules/
+
+# Mappe generate dal compilatore Sass (il CSS compilato invece va committato:
+# GitHub Pages serve file statici e non compila Sass da solo)
+assets/css/*.map
+.sass-cache/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Log
+npm-debug.log*
+*.log

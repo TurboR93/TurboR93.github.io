@@ -1,0 +1,112 @@
+// ===================================================================
+// FOOTER
+// ===================================================================
+
+@import '../abstracts/mixins';
+
+.site-footer {
+  position: relative;
+  margin-top: -1px;
+  background: $c-yellow;
+  color: $c-black;
+
+  &__inner {
+    @include container(1rem);
+    position: relative;
+    z-index: $z-content;
+    padding-block: 2rem 1rem;
+  }
+
+  &__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__block {
+    max-width: 24rem;
+
+    h3 {
+      font-size: $fs-base;
+      font-weight: $fw-black;
+      margin-bottom: 0.5rem;
+    }
+
+    h4 {
+      font-size: $fs-xs;
+      font-weight: $fw-bold;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    p, li {
+      font-size: $fs-sm;
+      line-height: $lh-normal;
+      color: $b-70;
+    }
+  }
+
+  &__social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  &__bottom {
+    padding-top: 0.75rem;
+    text-align: center;
+    border-top: 1px solid $b-10;
+    font-size: $fs-xs;
+    color: $b-50;
+
+    a {
+      text-decoration: underline;
+      &:hover { color: $c-red; }
+      @include focus-ring($c-red);
+    }
+
+    .sep { margin-inline: 0.5rem; }
+  }
+}
+
+// Pulsante circolare per i profili social
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 2.5rem;
+  padding-inline: 1rem;
+  font-size: $fs-xs;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  color: $c-black;
+  border: 2px solid $b-30;
+  border-radius: $r-full;
+  transition: background-color $d-fast ease, color $d-fast ease, transform $d-fast ease;
+  @include focus-ring($c-red);
+
+  svg { width: 1.125rem; height: 1.125rem; }
+
+  &:hover {
+    background: $c-black;
+    color: $c-yellow;
+    transform: translateY(-2px);
+  }
+
+  // Variante su fondo scuro
+  &--on-dark {
+    color: $c-white;
+    border-color: $w-30;
+
+    &:hover {
+      background: $c-yellow;
+      color: $c-black;
+      border-color: $c-yellow;
+    }
+  }
+}

@@ -1,0 +1,90 @@
+// ===================================================================
+// BOTTONI
+// Forma unica: pillola, maiuscolo, peso alto. Cambia solo il colore.
+// ===================================================================
+
+@import '../abstracts/mixins';
+
+.btn-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: $fs-base;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: $r-full;
+  border: 2px solid transparent;
+  transition: transform $d-fast ease, background-color $d-fast ease,
+              color $d-fast ease, border-color $d-fast ease, gap $d-medium ease;
+  @include focus-ring($c-yellow);
+
+  svg { width: 1.25rem; height: 1.25rem; flex-shrink: 0; }
+
+  &--lg { padding: 1rem 2rem; }
+
+  // Giallo pieno: l'azione principale su fondo scuro o rosso
+  &--yellow {
+    background: $c-yellow;
+    color: $c-black;
+    &:hover { background: $c-yellow-hover; transform: scale(1.05); }
+  }
+
+  // Rosso pieno: l'azione principale su fondo giallo o chiaro
+  &--red {
+    background: $c-red;
+    color: $c-white;
+    &:hover { background: $c-red-hover; transform: scale(1.05); }
+  }
+
+  // Nero pieno
+  &--black {
+    background: $c-black;
+    color: $c-yellow;
+    &:hover { background: $c-red; color: $c-white; transform: scale(1.05); }
+  }
+
+  // Contorno scuro su fondo giallo
+  &--outline-dark {
+    border-color: $b-70;
+    color: $c-black;
+    &:hover { background: $c-black; color: $c-white; }
+  }
+
+  // Contorno chiaro su fondo scuro
+  &--outline-light {
+    border-color: $w-40;
+    color: $c-white;
+    &:hover { background: $c-white; color: $c-night; border-color: $c-white; }
+  }
+
+  &[disabled],
+  &[aria-disabled='true'] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    &:hover { transform: none; }
+  }
+}
+
+// Richiamo testuale con freccia: la distanza cresce al passaggio del mouse.
+.cta-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  color: $c-yellow;
+  transition: gap $d-medium $ease-brand, color $d-fast ease;
+  @include focus-ring($c-yellow);
+
+  svg { width: 1.25rem; height: 1.25rem; }
+
+  &:hover { gap: 1rem; }
+
+  &--on-yellow {
+    color: $c-red;
+    @include focus-ring($c-red);
+  }
+}

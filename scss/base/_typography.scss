@@ -1,0 +1,93 @@
+// ===================================================================
+// TIPOGRAFIA
+// Regola di hAutomatico: tutti i titoli sono maiuscoli e al peso
+// massimo. L'unica gerarchia è la dimensione, non il peso.
+// ===================================================================
+
+@import '../abstracts/mixins';
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $fw-black;
+  text-transform: uppercase;
+  line-height: $lh-tight;
+  letter-spacing: $ls-tight;
+  text-wrap: balance;
+}
+
+// Titolo di pagina interna
+.h-page {
+  @include heading($fs-4xl, $fs-6xl);
+}
+
+// Titolo di sezione grande
+.h-section {
+  @include heading($fs-4xl, $fs-5xl);
+}
+
+// Titolo di sezione piccolo
+.h-sub {
+  @include heading($fs-3xl, $fs-4xl);
+}
+
+// Titolo di card
+.h-card {
+  font-size: $fs-2xl;
+  font-weight: $fw-black;
+  text-transform: uppercase;
+  line-height: $lh-tight;
+}
+
+// Colori dei titoli in base al fondo
+.h-on-dark   { color: $c-yellow; }
+.h-on-yellow { color: $c-red; }
+.h-on-red    { color: $c-white; }
+
+// Corpo del testo
+p {
+  text-wrap: pretty;
+}
+
+.lead {
+  font-size: $fs-lg;
+  line-height: $lh-relaxed;
+
+  @include up(md) {
+    font-size: $fs-xl;
+  }
+}
+
+.text-muted-dark   { color: $w-70; }
+.text-muted-yellow { color: $b-70; }
+
+// Etichetta piccola in maiuscolo (meta informazioni, categorie)
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: $fs-xs;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  letter-spacing: $ls-wide;
+  color: $c-yellow;
+}
+
+// Tratto di accento sotto i titoli di sezione: su hAutomatico ogni
+// titolo ne ha uno. Si disegna da sinistra quando entra nel viewport.
+.accent-line {
+  width: 5rem;
+  height: 4px;
+  margin-bottom: 1.5rem;
+  background: $c-red;
+  border-radius: $r-full;
+  transform-origin: left center;
+
+  &--on-red { background: $c-yellow; }
+  &--center { margin-inline: auto; transform-origin: center; }
+}
+
+// Testo monospaziato per numerazioni e dati tecnici
+.mono {
+  font-family: $font-mono;
+  font-size: $fs-sm;
+  font-weight: $fw-bold;
+}

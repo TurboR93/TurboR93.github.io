@@ -1,0 +1,93 @@
+// ===================================================================
+// FOGLIO DI STILE PRINCIPALE
+// Curriculum Vitae di Riccardo Brunello
+//
+// Ordine obbligato:
+//   1. token propri        — servono a configurare il framework
+//   2. variabili Bootstrap — vanno dichiarate PRIMA dell'import
+//   3. Bootstrap           — solo i moduli effettivamente usati
+//   4. stili propri        — base, layout, componenti, pagine
+//
+// Compilazione:  npm run css      (leggibile, per sviluppare)
+//                npm run build    (minificato, per pubblicare)
+// ===================================================================
+
+// -------------------------------------------------------------------
+// 1. Token propri
+// -------------------------------------------------------------------
+@import 'abstracts/tokens';
+@import 'abstracts/mixins';
+
+// -------------------------------------------------------------------
+// 2. Configurazione di Bootstrap
+// I breakpoint nativi (576/768/992/1200/1400) vengono sostituiti con
+// quelli di hAutomatico (640/768/1024/1280/1536), così le soglie del
+// framework e quelle dei nostri mixin coincidono.
+// -------------------------------------------------------------------
+$grid-breakpoints: (
+  xs: 0,
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1536px,
+);
+
+$container-max-widths: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1536px,
+);
+
+// Bootstrap dimezza questo valore per lato: 3rem dà 1.5rem effettivi.
+$container-padding-x: 3rem;
+
+$font-family-sans-serif: $font-sans;
+$font-family-monospace:  $font-mono;
+$body-bg:                $c-night;
+$body-color:             $c-white;
+$primary:                $c-red;
+$secondary:              $c-yellow;
+$border-radius:          $r-xl;
+$enable-shadows:         false;
+$enable-gradients:       false;
+
+// -------------------------------------------------------------------
+// 3. Bootstrap — import selettivo
+// Prendiamo griglia, utility e normalizzazione; lasciamo fuori i
+// componenti che non usiamo (dropdown, modali, carosello…) perché
+// richiedono JavaScript e appesantirebbero il foglio senza servire.
+// -------------------------------------------------------------------
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/variables-dark';
+@import '../node_modules/bootstrap/scss/maps';
+@import '../node_modules/bootstrap/scss/mixins';
+@import '../node_modules/bootstrap/scss/root';
+@import '../node_modules/bootstrap/scss/reboot';
+@import '../node_modules/bootstrap/scss/containers';
+@import '../node_modules/bootstrap/scss/grid';
+@import '../node_modules/bootstrap/scss/helpers';
+@import '../node_modules/bootstrap/scss/utilities';
+@import '../node_modules/bootstrap/scss/utilities/api';
+
+// -------------------------------------------------------------------
+// 4. Stili propri
+// -------------------------------------------------------------------
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/motion';
+
+@import 'layout/header';
+@import 'layout/sections';
+@import 'layout/footer';
+
+@import 'components/buttons';
+@import 'components/cards';
+@import 'components/form';
+
+@import 'pages/home';
+@import 'pages/cv';
+@import 'pages/progetti';

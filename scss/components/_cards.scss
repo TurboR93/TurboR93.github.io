@@ -1,0 +1,141 @@
+// ===================================================================
+// CARD E ETICHETTE
+// ===================================================================
+
+@import '../abstracts/mixins';
+
+// Involucro che si solleva al passaggio del mouse.
+.card-lift {
+  border-radius: $r-3xl;
+  transition: transform 0.35s $ease-spring, box-shadow 0.35s $ease-spring;
+  height: 100%;
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-10px);
+    box-shadow: $shadow-card-hover;
+  }
+}
+
+// Card su fondo scuro
+.card-dark {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.5rem;
+  background: $w-05;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid $w-10;
+  border-radius: $r-3xl;
+  box-shadow: $shadow-lg;
+  @include focus-ring($c-yellow);
+
+  &__media {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border-radius: $r-2xl;
+    background: $c-night-card;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+  }
+
+  &:hover &__media img { transform: scale(1.1); }
+
+  &__body { display: flex; flex-direction: column; flex: 1 1 auto; }
+
+  p { flex-grow: 1; color: $w-70; line-height: $lh-relaxed; }
+
+  h3 { margin-bottom: 0.75rem; color: $c-white; }
+}
+
+// Card su fondo giallo
+.card-value {
+  height: 100%;
+  padding: 1.5rem;
+  background: $b-05;
+  border-radius: $r-2xl;
+  transition: transform 0.35s $ease-spring, background-color 0.35s ease;
+
+  h3 {
+    font-size: $fs-xl;
+    color: $c-red;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    font-size: $fs-sm;
+    line-height: $lh-relaxed;
+    color: $b-80;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    background: $b-10;
+  }
+}
+
+// Cover "brand" per i progetti senza screenshot: riquadro pieno con
+// una grande iniziale, come fa hAutomatico con le icone.
+.cover-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: $fs-6xl;
+  font-weight: $fw-black;
+
+  &--yellow { background: $c-yellow; color: $c-black; }
+  &--red    { background: $c-red;    color: $c-yellow; }
+  &--black  { background: $c-black;  color: $c-yellow; }
+}
+
+// -------------------------------------------------------------------
+// Etichette
+// -------------------------------------------------------------------
+.pill {
+  display: inline-block;
+  padding: 0.25rem 0.625rem;
+  font-size: $fs-xs;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  border-radius: $r-full;
+  border: 1px solid $w-20;
+  color: $w-70;
+
+  &--on-yellow {
+    border-color: $b-30;
+    color: $b-70;
+  }
+
+  &--solid {
+    background: $c-yellow;
+    border-color: $c-yellow;
+    color: $c-black;
+  }
+}
+
+// Riga di metadati sopra il titolo di una card
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: $fs-xs;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  letter-spacing: $ls-wide;
+  color: $c-yellow;
+
+  .dot  { color: $w-30; }
+  .year { color: $w-50; }
+}

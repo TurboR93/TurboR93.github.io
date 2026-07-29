@@ -1,0 +1,176 @@
+// ===================================================================
+// FORM
+// ===================================================================
+
+@import '../abstracts/mixins';
+
+.form-brand {
+  max-width: 40rem;
+
+  &__row {
+    display: grid;
+    gap: 1.25rem;
+
+    @include up(md) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &__field {
+    margin-bottom: 1.25rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.375rem;
+    font-size: $fs-xs;
+    font-weight: $fw-bold;
+    text-transform: uppercase;
+    letter-spacing: $ls-wide;
+    color: $w-60;
+  }
+
+  // Segno che il campo è obbligatorio, letto anche dagli screen reader
+  // grazie al testo alternativo accanto nel markup.
+  .required {
+    color: $c-yellow;
+    margin-left: 0.125rem;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    color: $c-white;
+    background: $w-05;
+    border: 1px solid $w-15;
+    border-radius: $r-xl;
+    outline: none;
+    transition: border-color $d-fast ease, box-shadow $d-fast ease;
+
+    &::placeholder { color: $w-40; }
+
+    &:focus {
+      border-color: $c-yellow;
+      box-shadow: 0 0 0 1px $c-yellow;
+    }
+
+    // Riscontro di validità solo dopo che l'utente ha scritto qualcosa:
+    // :placeholder-shown evita di colorare di rosso un campo ancora vuoto
+    // e mai toccato.
+    &:not(:placeholder-shown):invalid {
+      border-color: $c-red;
+    }
+
+    &:not(:placeholder-shown):valid {
+      border-color: rgba(253, 240, 122, 0.5);
+    }
+  }
+
+  textarea {
+    min-height: 9rem;
+    resize: vertical;
+  }
+
+  &__hint {
+    margin-top: 0.375rem;
+    font-size: $fs-xs;
+    color: $w-50;
+  }
+
+  // Messaggio di errore, mostrato dal CSS quando il campo è compilato male.
+  &__error {
+    display: none;
+    margin-top: 0.375rem;
+    font-size: $fs-xs;
+    font-weight: $fw-bold;
+    color: $c-red;
+  }
+
+  input:not(:placeholder-shown):invalid ~ &__error,
+  textarea:not(:placeholder-shown):invalid ~ &__error {
+    display: block;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  // Campo esca per i bot: invisibile a chi naviga, compilato dagli
+  // automatismi. FormSubmit scarta l'invio se risulta valorizzato.
+  &__honey {
+    position: absolute !important;
+    left: -9999px !important;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+  }
+}
+
+// Consenso al trattamento dei dati
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+
+  input[type='checkbox'] {
+    width: 1.125rem;
+    height: 1.125rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+    accent-color: $c-red;
+  }
+
+  label {
+    margin: 0;
+    font-size: $fs-sm;
+    font-weight: $fw-regular;
+    text-transform: none;
+    letter-spacing: normal;
+    color: $w-70;
+  }
+
+  a {
+    text-decoration: underline;
+    &:hover { color: $c-yellow; }
+  }
+}
+
+// Riquadro con i recapiti accanto al form
+.contact-card {
+  padding: 1.5rem;
+  background: $w-05;
+  border: 1px solid $w-10;
+  border-radius: $r-3xl;
+
+  h3 {
+    font-size: $fs-lg;
+    color: $c-yellow;
+    margin-bottom: 1rem;
+  }
+
+  dl {
+    display: grid;
+    gap: 0.875rem;
+  }
+
+  dt {
+    font-size: $fs-xs;
+    font-weight: $fw-bold;
+    text-transform: uppercase;
+    letter-spacing: $ls-wide;
+    color: $w-50;
+  }
+
+  dd {
+    font-size: $fs-base;
+    color: $w-90;
+  }
+}
