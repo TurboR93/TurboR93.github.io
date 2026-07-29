@@ -8986,6 +8986,36 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
 .timeline__org .dot {
   color: rgba(255, 255, 255, 0.3);
 }
+.timeline__org a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+  transition: color 0.25s ease, text-decoration-color 0.25s ease;
+}
+.timeline__org a:focus-visible {
+  outline: 2px solid #fdf07a;
+  outline-offset: 2px;
+}
+.timeline__org a svg {
+  width: 0.8125rem;
+  height: 0.8125rem;
+  opacity: 0.55;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.timeline__org a:hover {
+  color: #fdf07a;
+  text-decoration-style: solid;
+  text-decoration-color: rgba(253, 240, 122, 0.6);
+}
+.timeline__org a:hover svg {
+  opacity: 1;
+  transform: translate(1px, -1px);
+}
 .timeline__desc {
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.625;

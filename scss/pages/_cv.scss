@@ -186,6 +186,37 @@
     color: $w-60;
 
     .dot { color: $w-30; }
+
+    // Ente o azienda con sito raggiungibile: diventa un collegamento.
+    // Si distingue per il colore e per la sottolineatura tratteggiata,
+    // che si fa piena al passaggio del mouse.
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3125rem;
+      color: $w-90;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(255, 255, 255, 0.35);
+      transition: color 0.25s ease, text-decoration-color 0.25s ease;
+      @include focus-ring($c-yellow);
+
+      svg {
+        width: 0.8125rem;
+        height: 0.8125rem;
+        opacity: 0.55;
+        transition: opacity 0.25s ease, transform 0.25s $ease-brand;
+      }
+
+      &:hover {
+        color: $c-yellow;
+        text-decoration-style: solid;
+        text-decoration-color: rgba(253, 240, 122, 0.6);
+
+        svg { opacity: 1; transform: translate(1px, -1px); }
+      }
+    }
   }
 
   &__desc {
