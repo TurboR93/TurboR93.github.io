@@ -379,3 +379,148 @@
     color: #555;
   }
 }
+
+// -------------------------------------------------------------------
+// Effetti visivi per il cinema
+// Ogni produzione ha la sua scheda: fotogrammi a sinistra, descrizione
+// del lavoro svolto a destra.
+// -------------------------------------------------------------------
+.film {
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+  background: $w-05;
+  border: 1px solid $w-10;
+  border-radius: $r-3xl;
+
+  &__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.375rem;
+  }
+
+  &__title {
+    font-size: $fs-2xl;
+    font-weight: $fw-black;
+    text-transform: uppercase;
+    line-height: $lh-tight;
+    color: $c-white;
+  }
+
+  &__year {
+    font-family: $font-mono;
+    font-size: $fs-sm;
+    font-weight: $fw-bold;
+    color: $c-yellow;
+  }
+
+  &__role {
+    font-size: $fs-xs;
+    font-weight: $fw-bold;
+    text-transform: uppercase;
+    letter-spacing: $ls-wide;
+    color: $w-50;
+    margin-bottom: 1rem;
+  }
+
+  &__desc {
+    color: $w-70;
+    line-height: $lh-relaxed;
+    margin-bottom: 1.25rem;
+  }
+
+  &__shots {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.875rem;
+  }
+
+  &__shot {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: $r-2xl;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s $ease-brand;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover img { transform: scale(1.05); }
+    }
+  }
+
+  // Riquadro in attesa del fotogramma: dichiara cosa deve arrivare e con
+  // quale nome, così sostituirlo è un'operazione di un istante.
+  &__placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 100%;
+    padding: 1rem;
+    text-align: center;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.03),
+      rgba(255, 255, 255, 0.03) 10px,
+      transparent 10px,
+      transparent 20px
+    );
+    border: 1px dashed rgba(253, 240, 122, 0.35);
+    border-radius: $r-2xl;
+
+    svg {
+      width: 1.75rem;
+      height: 1.75rem;
+      color: rgba(253, 240, 122, 0.5);
+    }
+
+    .what {
+      font-size: $fs-xs;
+      font-weight: $fw-bold;
+      text-transform: uppercase;
+      letter-spacing: $ls-wide;
+      color: $w-60;
+    }
+
+    .file {
+      font-family: $font-mono;
+      font-size: $fs-10;
+      color: $w-30;
+    }
+  }
+}
+
+// Nota sul metodo di lavoro, in coda alla sezione
+.method-note {
+  padding: 1.5rem 1.75rem;
+  background: rgba(208, 63, 41, 0.08);
+  border-left: 3px solid $c-red;
+  border-radius: 0 $r-2xl $r-2xl 0;
+
+  h3 {
+    font-size: $fs-lg;
+    font-weight: $fw-black;
+    text-transform: uppercase;
+    color: $c-yellow;
+    margin-bottom: 0.625rem;
+  }
+
+  p {
+    color: $w-70;
+    line-height: $lh-relaxed;
+
+    + p { margin-top: 0.75rem; }
+  }
+}
+
+@media print {
+  .film__placeholder { display: none; }
+  .film { break-inside: avoid; }
+}

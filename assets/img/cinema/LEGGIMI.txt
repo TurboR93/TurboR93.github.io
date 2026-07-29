@@ -1,0 +1,21 @@
+FOTOGRAMMI DELLE PRODUZIONI CINEMATOGRAFICHE
+============================================
+
+Metti qui le immagini, con questi nomi esatti: la pagina cv.html le cerca
+gia' e le mostra al posto dei segnaposto, senza altre modifiche.
+
+  midway-01.jpg          Midway - proiettili
+  midway-02.jpg          Midway - esplosioni
+  raised-01.jpg          Raised by the Wolves - polvere sul bordo della caverna
+  raised-02.jpg          Raised by the Wolves - colonne di fumo
+  locke-01.jpg           Locke & Key - sistema particellare del fantasma
+  locke-02.jpg           Locke & Key - scomposizione in livelli
+
+Formato consigliato: 1600x900 (16:9), JPEG di qualita' 82, sotto i 300 KB.
+Per ridimensionare:  sips -Z 1600 originale.jpg --out midway-01.jpg
+
+PRIMA DI PUBBLICARE
+-------------------
+I fotogrammi appartengono alle produzioni. Mostrare il proprio lavoro in un
+portfolio e' prassi diffusa fra gli artisti VFX, ma alcuni contratti lo
+vietano o lo subordinano a un'autorizzazione. Verifica di poterlo fare.
