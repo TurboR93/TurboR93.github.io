@@ -12,50 +12,160 @@
 
 @import '../abstracts/mixins';
 
+
 // -------------------------------------------------------------------
-// Fascia: titolo dell'ambito + griglia
+// FILTRO PER AMBITO — senza JavaScript
+//
+// Quattro pulsanti radio nascosti, uno per ambito, e altrettante <label>
+// che fungono da pulsanti. Il selettore :checked ~ raggiunge la griglia e
+// nasconde le tessere che non appartengono all'ambito scelto.
+//
+// Rispetto al filtro via :target questo non tocca l'indirizzo della pagina
+// e non provoca salti dello scorrimento; rispetto a una soluzione con
+// JavaScript, funziona anche a script disattivati. Lo stato selezionato è
+// nativo, quindi arriva gratis anche alle tecnologie assistive.
 // -------------------------------------------------------------------
-.rail {
-  margin-bottom: 3.5rem;
+.catalog {
+  position: relative;
+}
 
-  &__head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1.25rem;
-  }
+// Gli input restano raggiungibili da tastiera: nascosti alla vista, non
+// rimossi dal flusso di navigazione.
+.filter-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
 
-  &__title {
-    font-size: $fs-xl;
-    font-weight: $fw-black;
-    text-transform: uppercase;
-    letter-spacing: $ls-tight;
-    color: $c-yellow;
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 2rem;
+  padding: 0;
+  border: 0;
+}
 
-    @include up(md) { font-size: $fs-2xl; }
-  }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: $fs-sm;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  letter-spacing: $ls-wide;
+  color: $w-70;
+  background: $w-05;
+  border: 1px solid $w-15;
+  border-radius: $r-full;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.25s ease, color 0.25s ease,
+              border-color 0.25s ease, transform 0.25s $ease-spring;
 
-  &__count {
+  &__n {
     font-family: $font-mono;
-    font-size: $fs-xs;
-    color: $w-40;
+    font-size: $fs-10;
+    padding: 0.125rem 0.375rem;
+    border-radius: $r-full;
+    background: $w-10;
+    color: $w-60;
   }
 
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-
-    @include up(md) {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.25rem;
-    }
-
-    @include up(lg) {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: $c-white;
+      border-color: rgba(253, 240, 122, 0.5);
+      transform: translateY(-2px);
     }
   }
+}
+
+// Ambito selezionato
+@each $id in (tutti, prodotti, dati, studio) {
+  ##{'f-' + $id}:checked ~ .chips .chip[for='f-#{$id}'] {
+    background: $c-yellow;
+    border-color: $c-yellow;
+    color: $c-black;
+
+    .chip__n { background: rgba(0, 0, 0, 0.15); color: rgba(0, 0, 0, 0.7); }
+  }
+
+  // Messa a fuoco da tastiera visibile sull'etichetta, non sull'input nascosto
+  ##{'f-' + $id}:focus-visible ~ .chips .chip[for='f-#{$id}'] {
+    outline: 2px solid $c-yellow;
+    outline-offset: 3px;
+  }
+}
+
+// Le tessere fuori ambito escono dalla griglia, che si ricompone da sola.
+#f-prodotti:checked ~ .bento .poster:not(.is-prodotti),
+#f-dati:checked     ~ .bento .poster:not(.is-dati),
+#f-studio:checked   ~ .bento .poster:not(.is-studio) {
+  display: none;
+}
+
+// -------------------------------------------------------------------
+// GRIGLIA A TESSERE DI PESO DIVERSO
+//
+// Un muro di mattoni: i progetti più corposi occupano un mattone più
+// grande, gli altri riempiono il resto. `dense` chiede al browser di
+// tornare indietro a tappare i buchi lasciati dalle tessere larghe,
+// così la parete non resta forata.
+// -------------------------------------------------------------------
+.bento {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 11rem;
+  grid-auto-flow: dense;
+  gap: 0.875rem;
+
+  @include up(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: 12rem;
+    gap: 1.125rem;
+  }
+
+  @include up(lg) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 13rem;
+  }
+
+  .poster {
+    height: 100%;
+
+    &__media {
+      aspect-ratio: auto;
+      height: 100%;
+    }
+  }
+}
+
+// Tessera doppia: due colonne
+.poster--l {
+  grid-column: span 2;
+}
+
+// Tessera maggiore: due colonne per due righe.
+// Su telefono resta larga due colonne ma alta una sola: due righe piene
+// occuperebbero quasi tutto lo schermo.
+.poster--xl {
+  grid-column: span 2;
+
+  @include up(md) {
+    grid-row: span 2;
+  }
+
+  .poster__title {
+    font-size: $fs-xl;
+
+    @include up(md) { font-size: $fs-3xl; }
+  }
+
+  .poster__body { padding: 1.25rem 1.5rem 1.5rem; }
 }
 
 // -------------------------------------------------------------------
@@ -168,91 +278,16 @@
 // La locandina scelta emerge, le altre della stessa fascia arretrano.
 @supports selector(:has(*)) {
   @media (hover: hover) and (pointer: fine) {
-    .rail__grid:has(.poster:hover) .poster:not(:hover) {
+    .bento:has(.poster:hover) .poster:not(:hover) {
       opacity: 0.45;
       filter: saturate(0.55);
     }
 
-    .rail__grid .poster { transition: transform 0.35s $ease-brand,
+    .bento .poster { transition: transform 0.35s $ease-brand,
                                       border-color 0.35s ease,
                                       box-shadow 0.35s $ease-brand,
                                       opacity 0.35s ease,
                                       filter 0.35s ease; }
-  }
-}
-
-// -------------------------------------------------------------------
-// Locandina in evidenza: apre il catalogo a tutta larghezza
-// -------------------------------------------------------------------
-.spotlight {
-  position: relative;
-  display: grid;
-  overflow: hidden;
-  margin-bottom: 3.5rem;
-  border-radius: $r-3xl;
-  border: 1px solid $w-10;
-  background: $c-night-card;
-  min-height: 22rem;
-
-  &__media {
-    grid-area: 1 / 1;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  &__veil {
-    grid-area: 1 / 1;
-    background: linear-gradient(
-      to right,
-      rgba(10, 10, 10, 0.96) 0%,
-      rgba(10, 10, 10, 0.82) 45%,
-      rgba(10, 10, 10, 0.25) 100%
-    );
-
-    @include down(md) {
-      background: linear-gradient(
-        to top,
-        rgba(10, 10, 10, 0.96) 0%,
-        rgba(10, 10, 10, 0.8) 55%,
-        rgba(10, 10, 10, 0.3) 100%
-      );
-    }
-  }
-
-  &__body {
-    grid-area: 1 / 1;
-    align-self: center;
-    padding: 2rem;
-    max-width: 34rem;
-
-    @include up(md) { padding: 3rem; }
-  }
-
-  &__title {
-    font-size: $fs-3xl;
-    font-weight: $fw-black;
-    text-transform: uppercase;
-    line-height: $lh-tight;
-    color: $c-yellow;
-    margin-bottom: 0.75rem;
-
-    @include up(md) { font-size: $fs-5xl; }
-  }
-
-  &__desc {
-    color: $w-80;
-    line-height: $lh-relaxed;
-    margin-bottom: 1.25rem;
-  }
-
-  &__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
   }
 }
 

@@ -80,7 +80,7 @@
 
   <main id="contenuto">
 
-    <section class="section section--dark page-hero">
+    <section class="section section--dark page-hero" style="padding-bottom: 2rem">
       <div class="grid-backdrop" aria-hidden="true"></div>
       <div class="orb orb--red breathe" style="top: 10%; right: 5%" aria-hidden="true"></div>
 
@@ -88,45 +88,28 @@
         <p class="eyebrow">Portfolio</p>
         <h1 class="h-page h-on-dark">Progetti</h1>
         <div class="accent-line"></div>
-        <p class="lead text-muted-dark" style="max-width: 46rem">
-          Il catalogo completo: prodotti in produzione, analisi dati, business intelligence
-          e progetti di studio. Ogni scheda apre una pagina di dettaglio.
-          L'attività in ambito effetti visivi e animazione è documentata nel
-          <a href="cv.html" style="text-decoration: underline; color: #FDF07A">curriculum</a>.
-        </p>
       </div>
     </section>
 
-    <section class="section section--dark section--stitch">
+    <section class="section section--dark section--stitch" style="padding-top: 1rem">
       <div class="section__inner">
 
-        <a class="spotlight" href="progetti/meccanicosubito.html">
-          <div class="spotlight__media">
-            <img src="assets/img/portfolio/meccanicosubito/meccanicosubito-1.jpg" alt="Schermata di MeccanicoSubito con la mappa delle officine e il flusso di prenotazione"
-                 width="1280" height="720" fetchpriority="high">
-          </div>
-          <div class="spotlight__veil" aria-hidden="true"></div>
-          <div class="spotlight__body">
-            <div class="card-meta">
-              <span>In evidenza</span>
-              <span class="dot">·</span>
-              <span class="year">2026</span>
-            </div>
-            <h2 class="spotlight__title">MeccanicoSubito</h2>
-            <p class="spotlight__desc">Applicazione destinata alle officine meccaniche: gestisce prenotazioni, tempistiche e pagamenti, e mantiene il cliente aggiornato sullo stato della lavorazione in tempo reale.</p>
-            <div class="spotlight__actions">
-              <span class="btn-brand btn-brand--yellow">Apri il progetto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-            </div>
-          </div>
-        </a>
+        <div class="catalog">
+          <input class="filter-input" type="radio" name="ambito" id="f-tutti" checked>
+          <input class="filter-input" type="radio" name="ambito" id="f-prodotti">
+          <input class="filter-input" type="radio" name="ambito" id="f-dati">
+          <input class="filter-input" type="radio" name="ambito" id="f-studio">
 
-        <section class="rail">
-          <div class="rail__head">
-            <h2 class="rail__title">Prodotti e piattaforme</h2>
-            <span class="rail__count">5 progetti</span>
-          </div>
-          <div class="rail__grid">
-            <a class="poster" href="progetti/meccanicosubito.html">
+          <fieldset class="chips">
+            <legend class="sr-only">Filtra i progetti per ambito</legend>
+            <label class="chip" for="f-tutti">Tutti <span class="chip__n">13</span></label>
+            <label class="chip" for="f-prodotti">Prodotti e piattaforme <span class="chip__n">5</span></label>
+            <label class="chip" for="f-dati">Dati, BI e machine learning <span class="chip__n">5</span></label>
+            <label class="chip" for="f-studio">Analisi e progetti di studio <span class="chip__n">3</span></label>
+          </fieldset>
+
+          <div class="bento">
+            <a class="poster poster--xl is-prodotti" href="progetti/meccanicosubito.html">
               <div class="poster__media">
                 <img src="assets/img/portfolio/meccanicosubito/meccanicosubito-1.jpg" alt="Schermata di MeccanicoSubito con la mappa delle officine e il flusso di prenotazione"
                      width="1280" height="720" loading="lazy">
@@ -138,11 +121,11 @@
                   <span class="dot">·</span>
                   <span class="year">2026</span>
                 </div>
-                <h3 class="poster__title">MeccanicoSubito</h3>
+                <h2 class="poster__title">MeccanicoSubito</h2>
                 <span class="poster__hint">Apri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
               </div>
             </a>
-            <a class="poster" href="progetti/depyl.html">
+            <a class="poster poster--l is-prodotti" href="progetti/depyl.html">
               <div class="poster__media">
                 <img src="assets/img/portfolio/depyl/depyl-cover.webp" alt="Pagina iniziale del sito Depyl dedicato alla depurazione dell'acqua"
                      width="1280" height="720" loading="lazy">
@@ -154,11 +137,11 @@
                   <span class="dot">·</span>
                   <span class="year">2026</span>
                 </div>
-                <h3 class="poster__title">Depyl</h3>
+                <h2 class="poster__title">Depyl</h2>
                 <span class="poster__hint">Apri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
               </div>
             </a>
-            <a class="poster" href="progetti/tongue-tech.html">
+            <a class="poster poster--l is-prodotti" href="progetti/tongue-tech.html">
               <div class="poster__media">
                 <img src="assets/img/portfolio/tongue-tech/tongue-tech-1.jpg" alt="Copertina del progetto Tongue Tech"
                      width="1280" height="720" loading="lazy">
@@ -170,11 +153,11 @@
                   <span class="dot">·</span>
                   <span class="year">2026</span>
                 </div>
-                <h3 class="poster__title">Tongue Tech</h3>
+                <h2 class="poster__title">Tongue Tech</h2>
                 <span class="poster__hint">Apri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
               </div>
             </a>
-            <a class="poster" href="progetti/moove.html">
+            <a class="poster poster--m is-prodotti" href="progetti/moove.html">
               <div class="poster__media">
                 <img src="assets/img/portfolio/moove/moove-1.jpg" alt="Copertina del progetto mooVe"
                      width="1280" height="720" loading="lazy">
@@ -186,11 +169,11 @@
                   <span class="dot">·</span>
                   <span class="year">2026</span>
                 </div>
-                <h3 class="poster__title">mooVe</h3>
+                <h2 class="poster__title">mooVe</h2>
                 <span class="poster__hint">Apri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
               </div>
             </a>
-            <a class="poster" href="progetti/questo-sito.html">
+            <a class="poster poster--l is-prodotti" href="progetti/questo-sito.html">
               <div class="poster__media">
                 <img src="assets/img/portfolio/questo-sito/questo-sito-1.jpg" alt="Pagina iniziale di questo sito"
                      width="1280" height="720" loading="lazy">
@@ -202,19 +185,11 @@
                   <span class="dot">·</span>
                   <span class="year">2026</span>
                 </div>
-                <h3 class="poster__title">Questo sito</h3>
+                <h2 class="poster__title">Questo sito</h2>
                 <span class="poster__hint">Apri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
               </div>
             </a>
-          </div>
-        </section>
-        <section class="rail">
-          <div class="rail__head">
-            <h2 class="rail__title">Dati, BI e machine learning</h2>
-            <span class="rail__count">5 progetti</span>
-          </div>
-          <div class="rail__grid">
-            <a class="poster" href="progetti/evoluzione-data-driven.html">
+            <a class="poster poster--l is-dati" href="progetti/evoluzione-data-driven.html">
               <div class="poster__media">
                 <img src="assets/img/portfolio/evoluzione-data-driven/evoluzione-1.jpg" alt="Slide dello studio sull'evoluzione data-driven di un'azienda vitivinicola"
                      width="1280" height="720" loading="lazy">
@@ -226,11 +201,11 @@
                   <span class="dot">·</span>
                   <span class="year">2025</span>
                 </div>
-                <h3 class="poster__title">Evoluzione Data-Driven</h3>
+                <h2 class="poster__title">Evoluzione Data-Driven</h2>
                 <span class="poster__hint">Apri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
               </div>
             </a>
-            <a class="poster" href="progetti/titanicml.html">
+            <a class="poster poster--m is-dati" href="progetti/titanicml.html">
               <div class="poster__media">
                 <img src="assets/img/portfolio/titanicml/titanicml-1.jpg" alt="Grafico dell'importanza delle variabili nel modello sul Titanic"
                      width="1280" height="720" loading="lazy">
@@ -242,11 +217,11 @@
                   <span class="dot">·</span>
                   <span class="year">2026</span>
                 </div>
-                <h3 class="poster__title">Titanic · Machine Learning</h3>
+                <h2 class="poster__title">Titanic · Machine Learning</h2>
                 <span class="poster__hint">Apri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
               </div>
             </a>
-            <a class="poster" href="progetti/looker-dieta.html">
+            <a class="poster poster--m is-dati" href="progetti/looker-dieta.html">
               <div class="poster__media">
                 <img src="assets/img/portfolio/looker-dieta/looker-dieta-1.jpg" alt="Cruscotto Looker Studio che confronta obesità e composizione della dieta"
                      width="1280" height="720" loading="lazy">
@@ -258,11 +233,11 @@
                   <span class="dot">·</span>
                   <span class="year">2026</span>
                 </div>
-                <h3 class="poster__title">Obesità e dieta</h3>
+                <h2 class="poster__title">Obesità e dieta</h2>
                 <span class="poster__hint">Apri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
               </div>
             </a>
-            <a class="poster" href="progetti/tableau-turismo.html">
+            <a class="poster poster--m is-dati" href="progetti/tableau-turismo.html">
               <div class="poster__media">
                 <img src="assets/img/portfolio/tableau-turismo/tableau-turismo-1.jpg" alt="Mappa Tableau della crescita del turismo globale fra 2013 e 2019"
                      width="1280" height="720" loading="lazy">
@@ -274,11 +249,11 @@
                   <span class="dot">·</span>
                   <span class="year">2026</span>
                 </div>
-                <h3 class="poster__title">Turismo globale</h3>
+                <h2 class="poster__title">Turismo globale</h2>
                 <span class="poster__hint">Apri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
               </div>
             </a>
-            <a class="poster" href="progetti/esamesql.html">
+            <a class="poster poster--m is-dati" href="progetti/esamesql.html">
               <div class="poster__media">
                 <img src="assets/img/portfolio/esamesql/esamesql-1.jpg" alt="Schermata del progetto sulla base di dati dell'energia sostenibile"
                      width="1280" height="720" loading="lazy">
@@ -290,19 +265,11 @@
                   <span class="dot">·</span>
                   <span class="year">2025</span>
                 </div>
-                <h3 class="poster__title">Energia sostenibile</h3>
+                <h2 class="poster__title">Energia sostenibile</h2>
                 <span class="poster__hint">Apri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
               </div>
             </a>
-          </div>
-        </section>
-        <section class="rail">
-          <div class="rail__head">
-            <h2 class="rail__title">Analisi e progetti di studio</h2>
-            <span class="rail__count">3 progetti</span>
-          </div>
-          <div class="rail__grid">
-            <a class="poster" href="progetti/dolomiti-mobilita.html">
+            <a class="poster poster--l is-studio" href="progetti/dolomiti-mobilita.html">
               <div class="poster__media">
                 <img src="assets/img/portfolio/dolomiti-mobilita/dolomiti-mobilita-1.jpg" alt="Confronto fra la storica ferrovia di Cortina e lo scenario di progetto"
                      width="1280" height="720" loading="lazy">
@@ -314,11 +281,11 @@
                   <span class="dot">·</span>
                   <span class="year">2026</span>
                 </div>
-                <h3 class="poster__title">Dolomiti Mobilità</h3>
+                <h2 class="poster__title">Dolomiti Mobilità</h2>
                 <span class="poster__hint">Apri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
               </div>
             </a>
-            <a class="poster" href="progetti/burocracyhelper.html">
+            <a class="poster poster--m is-studio" href="progetti/burocracyhelper.html">
               <div class="poster__media">
                 <img src="assets/img/portfolio/burocracyhelper/burocracyhelper-1.jpg" alt="Diagramma di flusso del processo di valutazione del bonus"
                      width="1280" height="720" loading="lazy">
@@ -330,11 +297,11 @@
                   <span class="dot">·</span>
                   <span class="year">2026</span>
                 </div>
-                <h3 class="poster__title">Progetto Bonny</h3>
+                <h2 class="poster__title">Progetto Bonny</h2>
                 <span class="poster__hint">Apri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
               </div>
             </a>
-            <a class="poster" href="progetti/counter.html">
+            <a class="poster poster--m is-studio" href="progetti/counter.html">
               <div class="poster__media">
                 <img src="assets/img/portfolio/counter/counter-1.jpg" alt="Interfaccia del contatore in JavaScript"
                      width="1280" height="720" loading="lazy">
@@ -346,12 +313,13 @@
                   <span class="dot">·</span>
                   <span class="year">2026</span>
                 </div>
-                <h3 class="poster__title">Counter</h3>
+                <h2 class="poster__title">Counter</h2>
                 <span class="poster__hint">Apri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
               </div>
             </a>
           </div>
-        </section>
+        </div>
+
       </div>
     </section>
   </main>
