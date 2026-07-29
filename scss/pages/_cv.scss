@@ -77,6 +77,39 @@
 
     @include up(md) { font-size: $fs-3xl; }
   }
+
+  // Variante a riquadro: solleva il blocco dal fondo della sezione,
+  // così il percorso si legge come una scheda a sé e non come testo
+  // appoggiato sul gradiente.
+  &--panel {
+    padding: 1.5rem 1.25rem;
+    background: $w-05;
+    border: 1px solid $w-10;
+    border-radius: $r-3xl;
+    box-shadow: $shadow-2xl;
+
+    @include up(md) { padding: 2rem 1.75rem; }
+  }
+}
+
+// -------------------------------------------------------------------
+// Percorso: esperienza e formazione
+// Da xl in su le due timeline corrono affiancate come binari paralleli;
+// sotto quella soglia la colonna è troppo stretta e restano impilate.
+// -------------------------------------------------------------------
+.cv-tracks {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+  margin-top: 3rem;
+
+  @include up(xl) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  // Dentro la griglia la spaziatura la detta il gap.
+  .cv-block + .cv-block { margin-top: 0; }
 }
 
 // -------------------------------------------------------------------
@@ -208,6 +241,11 @@
     flex-wrap: wrap;
     gap: 0.5rem;
   }
+}
+
+// I livelli sono raggruppati per ambito: la programmazione apre l'elenco.
+.skill-group + .skill-group {
+  margin-top: 0.5rem;
 }
 
 // Livello di competenza reso con una barra.
@@ -346,9 +384,20 @@
     color: #000 !important;
   }
 
-  .cv {
+  .cv,
+  .cv-tracks {
     display: block;
   }
+
+  // Sulla carta il riquadro non serve: sarebbe solo fondo grigio.
+  .cv-block--panel {
+    padding: 0;
+    background: none !important;
+    border: none;
+    box-shadow: none;
+  }
+
+  .cv-tracks .cv-block + .cv-block { margin-top: 2rem; }
 
   .cv__aside {
     position: static;
