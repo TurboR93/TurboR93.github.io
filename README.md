@@ -107,7 +107,7 @@ su **GitHub Actions**.
 
 - [x] Fotografia ritratto — in `assets/img/me/`, due misure servite con `srcset`
 - [x] Esperienze lavorative e formazione complete in `cv.html`
-- [ ] Livello di inglese: indicato come "Professionale", da confermare
+- [x] Livello di inglese: Professionale, confermato
 - [ ] Attivazione di FormSubmit (procedura qui sopra): finché manca, il modulo non recapita
 - [ ] Schermate del progetto mooVe (ora ha una copertina tipografica)
 
