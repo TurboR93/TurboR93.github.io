@@ -1,18 +1,14 @@
 ASSET DELLE PRODUZIONI CINEMATOGRAFICHE
 =======================================
 
-Le schede Midway, Raised by the Wolves, The Mandalorian e Watchmen usano ora
+Le schede Midway, Raised by the Wolves, The Mandalorian, Watchmen e Locke & Key usano ora
 mini-video MP4 sotto assets/video/cinema/ e poster WebP in questa cartella.
 
   midway-01/02/03.webp   Midway
   raised-01/02/03.webp   Raised by the Wolves
   mandalorian-01.webp    The Mandalorian
   watchmen-freeze.webp   Watchmen - congelamento in oro
-
-Restano da aggiungere i materiali di Locke & Key con questi nomi:
-
-  locke-01.jpg           Locke & Key - sistema particellare del fantasma
-  locke-02.jpg           Locke & Key - scomposizione in livelli
+  locke-01/02.webp       Locke & Key - stagione 1
 
 PRIMA DI PUBBLICARE
 -------------------
