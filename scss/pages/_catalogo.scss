@@ -168,6 +168,34 @@
   .poster__body { padding: 1.25rem 1.5rem 1.5rem; }
 }
 
+// Etigraph è il concept visivo in evidenza: resta nella stessa scansione
+// ordinata delle tessere larghe, ma riceve un segnale editoriale dedicato.
+.poster--spotlight {
+  border-color: rgba(253, 240, 122, 0.58);
+  box-shadow: 0 1rem 3rem rgba(208, 63, 41, 0.16);
+
+  &::after {
+    content: 'In evidenza';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+    padding: 0.35rem 0.65rem;
+    border-radius: $r-full;
+    background: $c-yellow;
+    color: $c-black;
+    font-size: $fs-10;
+    font-weight: $fw-black;
+    text-transform: uppercase;
+    letter-spacing: $ls-wide;
+    pointer-events: none;
+  }
+
+  .poster__title {
+    font-size: $fs-xl;
+  }
+}
+
 // -------------------------------------------------------------------
 // Locandina
 // -------------------------------------------------------------------

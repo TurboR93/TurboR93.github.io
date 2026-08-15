@@ -9681,6 +9681,30 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
   padding: 1.25rem 1.5rem 1.5rem;
 }
 
+.poster--spotlight {
+  border-color: rgba(253, 240, 122, 0.58);
+  box-shadow: 0 1rem 3rem rgba(208, 63, 41, 0.16);
+}
+.poster--spotlight::after {
+  content: "In evidenza";
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  padding: 0.35rem 0.65rem;
+  border-radius: 9999px;
+  background: #fdf07a;
+  color: #000000;
+  font-size: 0.625rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  pointer-events: none;
+}
+.poster--spotlight .poster__title {
+  font-size: 1.25rem;
+}
+
 .poster {
   position: relative;
   display: block;
