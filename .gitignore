@@ -17,3 +17,7 @@ Thumbs.db
 # Log
 npm-debug.log*
 *.log
+
+# Sorgenti video e download di lavorazione: nel sito entrano solo gli export
+# ottimizzati sotto assets/.
+media_downloads/

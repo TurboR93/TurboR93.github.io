@@ -516,21 +516,45 @@
     gap: 0.875rem;
   }
 
+  &__shots--single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  &__shots--three {
+    .film__shot:last-child {
+      grid-column: 1 / -1;
+    }
+
+    @include up(lg) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+
+      .film__shot:last-child { grid-column: auto; }
+    }
+  }
+
   &__shot {
     position: relative;
     aspect-ratio: 16 / 9;
     overflow: hidden;
     border-radius: $r-2xl;
+    background: $c-night-card;
 
-    img {
+    img,
+    video {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.4s $ease-brand;
     }
 
+    &--wide { aspect-ratio: 2 / 1; }
+
+    .film__poster { display: none; }
+
     @media (hover: hover) and (pointer: fine) {
-      &:hover img { transform: scale(1.05); }
+      &:hover img,
+      &:hover video { transform: scale(1.04); }
     }
   }
 
@@ -575,6 +599,16 @@
       color: $w-30;
     }
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .film__shot .film__video { display: none; }
+  .film__shot .film__poster { display: block; }
+}
+
+@media print {
+  .film__shot .film__video { display: none !important; }
+  .film__shot .film__poster { display: block !important; }
 }
 
 // Nota sul metodo di lavoro, in coda alla sezione

@@ -1,18 +1,18 @@
-FOTOGRAMMI DELLE PRODUZIONI CINEMATOGRAFICHE
-============================================
+ASSET DELLE PRODUZIONI CINEMATOGRAFICHE
+=======================================
 
-Metti qui le immagini, con questi nomi esatti: la pagina cv.html le cerca
-gia' e le mostra al posto dei segnaposto, senza altre modifiche.
+Le schede Midway, Raised by the Wolves, The Mandalorian e Watchmen usano ora
+mini-video MP4 sotto assets/video/cinema/ e poster WebP in questa cartella.
 
-  midway-01.jpg          Midway - proiettili
-  midway-02.jpg          Midway - esplosioni
-  raised-01.jpg          Raised by the Wolves - polvere sul bordo della caverna
-  raised-02.jpg          Raised by the Wolves - colonne di fumo
+  midway-01/02/03.webp   Midway
+  raised-01/02/03.webp   Raised by the Wolves
+  mandalorian-01.webp    The Mandalorian
+  watchmen-freeze.webp   Watchmen - congelamento in oro
+
+Restano da aggiungere i materiali di Locke & Key con questi nomi:
+
   locke-01.jpg           Locke & Key - sistema particellare del fantasma
   locke-02.jpg           Locke & Key - scomposizione in livelli
-
-Formato consigliato: 1600x900 (16:9), JPEG di qualita' 82, sotto i 300 KB.
-Per ridimensionare:  sips -Z 1600 originale.jpg --out midway-01.jpg
 
 PRIMA DI PUBBLICARE
 -------------------

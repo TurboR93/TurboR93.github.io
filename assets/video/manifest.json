@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "exports": [
+    {
+      "file": "cinema/watchmen-freeze.mp4",
+      "source_name": "freeze.mov",
+      "start_seconds": 10.0,
+      "end_seconds": 19.0,
+      "duration_seconds": 9.0,
+      "dimensions": "1280x640",
+      "crop": "1728x864+0+54",
+      "audio": false,
+      "poster": "../img/cinema/watchmen-freeze.webp"
+    },
+    {
+      "file": "vaultinn/vaultinn-homepage.mp4",
+      "source_name": "VAULTINN_VideoHomepage_v06.mp4",
+      "start_seconds": 0.0,
+      "end_seconds": 28.04,
+      "duration_seconds": 28.04,
+      "dimensions": "1280x720",
+      "audio": false,
+      "poster": "vaultinn/vaultinn-homepage-poster.webp"
+    }
+  ]
+}

@@ -9263,21 +9263,44 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.875rem;
 }
+.film__shots--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+.film__shots--three .film__shot:last-child {
+  grid-column: 1/-1;
+}
+@media (min-width: 1024px) {
+  .film__shots--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .film__shots--three .film__shot:last-child {
+    grid-column: auto;
+  }
+}
 .film__shot {
   position: relative;
   aspect-ratio: 16/9;
   overflow: hidden;
   border-radius: 1rem;
+  background: #111111;
 }
-.film__shot img {
+.film__shot img,
+.film__shot video {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
+.film__shot--wide {
+  aspect-ratio: 2/1;
+}
+.film__shot .film__poster {
+  display: none;
+}
 @media (hover: hover) and (pointer: fine) {
-  .film__shot:hover img {
-    transform: scale(1.05);
+  .film__shot:hover img, .film__shot:hover video {
+    transform: scale(1.04);
   }
 }
 .film__placeholder {
@@ -9311,6 +9334,22 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
   color: rgba(255, 255, 255, 0.3);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .film__shot .film__video {
+    display: none;
+  }
+  .film__shot .film__poster {
+    display: block;
+  }
+}
+@media print {
+  .film__shot .film__video {
+    display: none !important;
+  }
+  .film__shot .film__poster {
+    display: block !important;
+  }
+}
 .method-note {
   padding: 1.5rem 1.75rem;
   background: rgba(208, 63, 41, 0.08);
@@ -9872,10 +9911,10 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
 .studio-band {
   position: relative;
   display: grid;
-  gap: 2rem;
+  gap: 1.75rem;
   align-items: center;
   margin-top: 3.5rem;
-  padding: 2.5rem;
+  padding: 1.25rem;
   overflow: hidden;
   background: #111111;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -9883,9 +9922,9 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
 }
 @media (min-width: 768px) {
   .studio-band {
-    grid-template-columns: minmax(0, auto) minmax(0, 1fr);
-    gap: 3.5rem;
-    padding: 3rem;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 2.5rem;
+    padding: 1.5rem;
   }
 }
 .studio-band::before {
@@ -9903,20 +9942,33 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
   position: relative;
   z-index: 1;
   justify-self: start;
+  margin-bottom: 1.25rem;
 }
 .studio-band__logo img {
-  width: min(100%, 20rem);
+  width: min(100%, 11rem);
   height: auto;
 }
-@media (min-width: 768px) {
-  .studio-band__logo img {
-    width: 17rem;
-  }
+.studio-band__media {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #050505;
 }
-@media (min-width: 1024px) {
-  .studio-band__logo img {
-    width: 21rem;
-  }
+.studio-band__media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.studio-band__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: inherit;
+  pointer-events: none;
 }
 .studio-band__body {
   position: relative;
@@ -9954,4 +10006,13 @@ input:not(:placeholder-shown):invalid ~ .form-brand__error, textarea:not(:placeh
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-band__media video {
+    display: none;
+  }
+  .studio-band__media {
+    background: url("../video/vaultinn/vaultinn-homepage-poster.webp") center/cover no-repeat;
+  }
 }

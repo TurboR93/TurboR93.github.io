@@ -419,19 +419,19 @@
 .studio-band {
   position: relative;
   display: grid;
-  gap: 2rem;
+  gap: 1.75rem;
   align-items: center;
   margin-top: 3.5rem;
-  padding: 2.5rem;
+  padding: 1.25rem;
   overflow: hidden;
   background: $c-night-card;
   border: 1px solid $w-10;
   border-radius: $r-3xl;
 
   @include up(md) {
-    grid-template-columns: minmax(0, auto) minmax(0, 1fr);
-    gap: 3.5rem;
-    padding: 3rem;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 2.5rem;
+    padding: 1.5rem;
   }
 
   // Alone caldo che stacca la fascia dal fondo della pagina
@@ -451,13 +451,36 @@
     position: relative;
     z-index: 1;
     justify-self: start;
+    margin-bottom: 1.25rem;
 
     img {
-      width: min(100%, 20rem);
+      width: min(100%, 11rem);
       height: auto;
+    }
+  }
 
-      @include up(md) { width: 17rem; }
-      @include up(lg) { width: 21rem; }
+  &__media {
+    position: relative;
+    z-index: 1;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: $r-2xl;
+    background: #050505;
+
+    video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: inherit;
+      pointer-events: none;
     }
   }
 
@@ -498,5 +521,14 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-band__media video { display: none; }
+
+  .studio-band__media {
+    background:
+      url('../video/vaultinn/vaultinn-homepage-poster.webp') center / cover no-repeat;
   }
 }
