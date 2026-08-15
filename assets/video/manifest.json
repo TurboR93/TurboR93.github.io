@@ -24,20 +24,20 @@
     },
     {
       "file": "cinema/locke-01.mp4",
-      "source_name": "Locke & Key - Season 1 VFX Breakdown",
-      "start_seconds": 43.0,
-      "end_seconds": 51.0,
-      "duration_seconds": 8.0,
+      "source_name": "Locke & Key - Season 1 Official Trailer",
+      "start_seconds": 59.2,
+      "end_seconds": 61.7,
+      "duration_seconds": 2.5,
       "dimensions": "1280x720",
       "audio": false,
       "poster": "../img/cinema/locke-01.webp"
     },
     {
       "file": "cinema/locke-02.mp4",
-      "source_name": "Locke & Key - Season 1 VFX Breakdown",
-      "start_seconds": 51.0,
-      "end_seconds": 59.0,
-      "duration_seconds": 8.0,
+      "source_name": "Locke & Key - Season 1 Official Trailer",
+      "start_seconds": 61.0,
+      "end_seconds": 63.2,
+      "duration_seconds": 2.2,
       "dimensions": "1280x720",
       "audio": false,
       "poster": "../img/cinema/locke-02.webp"
